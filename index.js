@@ -4593,7 +4593,7 @@ loli.sendMessage(from, menugif,  MessageType.video, {mimetype: 'video/gif', quot
 ┃⋆│➥ Converte video em audio
 ┃⋆│💎➢ ${prefix}Ttp ⟨🥳⟩
 ┃⋆│➥ Faz sticker de letras paradas
-┃⋆│💎➢ ${prefix}ytmp4 ⟨🐧⟩
+┃⋆│💎➢ ${prefix}ytmp4 ⟨🐧⟩ [OFF]
 ┃⋆│➥ Baixa um vídeo do youtube
 ┃⋆│💎➢ ${prefix}playmp4 ⟨🐧⟩
 ┃⋆│➥ Baixa um vídeo do youtube
@@ -5090,7 +5090,7 @@ break
                     loli.sendMessage(from, get_video, video, { mimetype: 'video/mp4', filename: `${get_result.title}.mp4`, quoted: mek, thumbnail:null})
                     break
                     
-                    case 'ytmp4':
+                    case 'ytmp4indefinido444':
                     addFilter(from)
  if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
       if (args.length < 1) return reply("cade o nome o-onichan")
@@ -11192,6 +11192,8 @@ loli.sendMessage(from, jgif2,  MessageType.video, {mimetype: 'video/gif', quoted
 ┃⋆│➥ Dá-lhe um tiro no seu amg
 ┃⋆│💎➢ ${prefix}mamada @Pessoa ⟨🤤⟩
 ┃⋆│➥ Dá-lhe uma mamada no seu amg
+┃⋆│💎➢ ${prefix}sexo @Pessoa ⟨🤤⟩
+┃⋆│➥ fazer secsu com seu amg
 ┃⋆│💎➢ ${prefix}soco @Pessoa ⟨👊⟩
 ┃⋆│➥ Dá-lhe um soco no seu amg
 ┃⋆│💎➢ ${prefix}casar @Pessoa ⟨👰⟩
@@ -16399,6 +16401,21 @@ pru += `@${_.split('@')[0]}\n`
 susp = `@${sender.split("@")[0]} Acabo de da uma Mamada na(o) @${mentioned[0].split('@')[0]} ${randomemojis}` 
 const mamar = fs.readFileSync('./src/mamar.mp4')
 loli.sendMessage(from, mamar,  MessageType.video, {mimetype: 'video/gif', quoted: mek, caption: susp})
+break
+
+case 'sexo':
+addFilter(from)
+if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('marque o alvo que você quer fazer sexo')
+mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+pru = '.\n'
+for (let _ of mentioned) {
+pru += `@${_.split('@')[0]}\n`
+}
+susp = `O @${sender.split("@")[0]} esta numa fudelancia com @${mentioned[0].split('@')[0]} ${randomemojis}` 
+const fuder = fs.readFileSync('./src/fuder.mp4')
+loli.sendMessage(from, fuder,  MessageType.video, {mimetype: 'video/gif', quoted: mek, caption: susp})
 break
 
 case 'bazuka':
