@@ -50,6 +50,8 @@
 ║⋆│➥ Menu de musicas
 ║⋆│💎➢ ${prefix}patentes ⟨👨‍🎓⟩
 ║⋆│➥ Menu de patentes
+║⋆│💎➢ ${prefix}rpgmenu ⟨‍🛡️⟩
+║⋆│➥ Menu de rpg 
 ║⋆│💎➢ ${prefix}Outros ⟨👻⟩
 ║⋆│➥ Outros comandos 
 ║⋆│💎➢ ${prefix}Info ⟨🌐⟩

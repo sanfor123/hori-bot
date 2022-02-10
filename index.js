@@ -315,6 +315,8 @@ const fetch = require('node-fetch')
 const Jimp = require('jimp')
 const { getRegisterNo, getRegisterName, getRegisterSerial, getRegisterAge, getRegisterTime, getRegisteredRandomId, addRegisteredUser, createSerial, checkRegisteredUser } = require('./lib/register.js')
 const { getLevelingXp, getLevelingId, addLevelingXp, addLevelingLevel, addLevelingId, getLevelingLevel, getUserRank, addCooldown, leveltab } = require('./lib/leveling.js')
+const { checkPetualangUser, addInventori, addBesi, sellBesi, getBesi, addDm, sellDm, getDm, addEmas, sellEmas, getEmas, addFish, sellFish, getFish } = require("./lib/rpgfunction");
+const { isLimit, limitAdd, giveLimit, addBalance, kurangBalance, getBalance} = require('./limit');
 const { addTTTId, addTTTwin, addTTTdefeat, addTTTtie, addTTTpoints, getTTTId, getTTTwins, getTTTdefeats, getTTTties, getTTTpoints } = require('./lib/tictactoe.js')//JOGO DA VELHA,AGRADECIMENTOS: IRIS(kill), Resen
 const { addLimit, getLimit } = require('./lib/limit.js')// LIMITADOR, AGRADECIMENTOS: IRIS(kill), Resen
 const { y2mateA, y2mateV } = require('./lib/y2mate.js')
@@ -376,9 +378,14 @@ const totalcmd = JSON.parse(fs.readFileSync('./data/totalcmd.json'))[0].totalcmd
 const { Exkey } = JSON.parse(fs.readFileSync('./data/apikey.json')) 
 const { isFiltered, addFilter } = require('./lib/antispam')
 const { isFilteredd, addFilterr } = require('./lib/antispam1')
+
+ var ikan = ['🐳','🦈','🐬','🐋','🐟','🐠','🦐','🦑','🦀','🐡','🐙']
+        var hewan = ['🐔','🦃','🦆','🐐','🐏','🐖','🐑','🐎','🐺']
+        var burung = ['🦋','🕷','🐝','🐉','🦆','🦅','🕊','🐧','🐦','🦇']
+
 //_INFORMAÇÕES DO BOT(settings)
 const infos = JSON.parse(fs.readFileSync('./data/settings.json'))
-const {SeuNome, SeuNumero, SegundoNumero, NomDoBot, NumeroDoSeuBot, NomeDoBot, NomeDoAtualDono, cdd, ammOff, cr, crtt, crh } = infos
+const {SeuNome, SeuNumero, SegundoNumero, limitCount, NomDoBot, NumeroDoSeuBot, NomeDoBot, NomeDoAtualDono, cdd, ammOff, cr, crtt, crh } = infos
 const blocked = []
 const isUrl = (url) => {
             return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
@@ -393,6 +400,7 @@ const setiker = JSON.parse(fs.readFileSync('./src/stik.json'))
 const videonye = JSON.parse(fs.readFileSync('./src/video.json'))
 const audionye = JSON.parse(fs.readFileSync('./src/audio.json'))
 const imagenye = JSON.parse(fs.readFileSync('./src/image.json'))
+const balance = JSON.parse(fs.readFileSync('./balance.json'))
 
 //sistema de imgbb e apikey
 const apikeyG = '941644256336912a1409c0bcfce50071';
@@ -422,6 +430,7 @@ charging = 'não detectado'
 baterai = 'não detectado'
 aaa = 'on'
 numbernye = '0'
+healtawal = 100
 
 //_VCARD DONO DO BOT
 const vcard = 'BEGIN:VCARD\n' 
@@ -1214,6 +1223,27 @@ headerType: 4
 }
 loli.sendMessage(from, buttonMessages, MessageType.buttonsMessage, options)
 }
+
+ const sendButton = async(from, context, fortext, but, mek) => {
+        const buttonMessages = {
+        contentText: context,
+        footerText: fortext,
+        buttons: but,
+        headerType: 1
+        }
+        loli.sendMessage(from, buttonMessages, MessageType.buttonsMessage, {
+        quoted: mek
+        })
+        }
+
+async function sendButLocation(id, text1, desc1, gam1, but = [], options = {}) {
+        const buttonMessages = { locationMessage: { jpegThumbnail: gam1 }, contentText: text1, footerText: desc1, buttons: but, headerType: 6 }
+        return loli.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+        } 
+        var sendButloc = (from, title, text, desc, button, sen, men, file) => {
+        return loli.sendMessage(from, {"text": '',"contentText": title + text,"footerText": desc, "buttons": button, "headerType": "LOCATION", "locationMessage": { "degreesLongitude": "", "degreesLatitude": "", "jpegThumbnail": file}}, MessageType.buttonsMessage, { quoted: mek, contextInfo: {"mentionedJid": men ? men : []}})
+        }    
+                                                     
 //_Botão de lista 
 // responseButton = (type == 'listResponseMessage') ? mek.message.listResponseMessage.title : ''
 const listRM = (type === 'listResponseMessage') ? mek.message.listResponseMessage.singleSelectReply.selectedRowId : ''
@@ -1277,9 +1307,18 @@ reply('_[ ! ] Erro ao baixar e enviar mídia_')
 
 const isBanned = ban.includes(sender) //Banido do bot
 const isUser = checkRegisteredUser(sender) //Use
-const isvipp = vipp.includes(sender) //Premium
+const isvipp = vipp.includes(sender) //Vip
+const isPetualang = checkPetualangUser(sender)
 const isOwnerB = ownerNumberB.includes(sender) //Owner "Dono do bot"
 const isRegistered = checkRegisteredUser(sender) //Registro
+
+//Modo de RPG de banco de dados por Zadik
+const _RPG = JSON.parse(fs.readFileSync('./lib/rpg/inventori.json'))
+const _level = JSON.parse(fs.readFileSync('./lib/rpg/leveluser.json'))
+const _petualang = JSON.parse(fs.readFileSync('./lib/rpg/inventori.json'))
+const _healt = JSON.parse(fs.readFileSync('./lib/rpg/healt.json'))
+const limit = JSON.parse(fs.readFileSync('./limit.json'));
+
 
 //TESTE ATIVAR && DESLIGAR
 const isAntiLink = isGroup ? antilink.includes(from) : false //Anti link
@@ -1687,8 +1726,8 @@ levelnoton: 'TESTE TESTE',
 levelnol: 'TESTE TESTE',
 error: {
 stick: '[❗] Falha, ocorreu um erro ao converter a imagem em um adesivo ❌',
-Iv: '❌ Link inválido ❌'
-},
+Iv: '❌ Link inválido ❌',
+limit: `Opa desculpa onii-chan ${pushname} seu limite acabou`,
 only: {
 tobiowber: `Esse comando só pode ser usado por ${SeuNome}`,
 tobiplays: `⏳Comando ${command} aguarde alguns instantes...⏳\n\nA sua música será enviada em até 2 minutos\nCaso não envie, tente especificar o nome da música.`,
@@ -1696,6 +1735,7 @@ tobiattp: 'Aguarde nii-san😊\n\nCaso não funcione, use o comando novamente.�
 tobianime: `Ohayo Oni-chan, Comando ${command} Vai demorar alguns segundos...`,
 tobirply: `[❗] Comando ${command} ja esta ativado!`,
 group: '[❗] Este comando só pode ser usado em grupos! ❌',
+player: `Desculpe onii-chan ${pushname} parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`,
 					premium: `[❗] ESTE PEDIDO É SO PARA *USUÁRIOS VIP*`,
 					mod: `[❗] ESTE PEDIDO É ESPECÍFICO PARA USUARIO MOD HORI BOT*`,
 					benned: `Você para a banda, por favor, contate o proprietário para abrir sua banda`,
@@ -1727,6 +1767,19 @@ tobantilink: `Eae onii-chan, E esse link aí?🧐`,
 ╚⊷╾╾╾╾╾⊷╾╾╾╾╾⊷╾╾╾⊷⊷`,
 }
 }
+}
+ function randomNomor(min, max = null) {
+		  if (max !== null) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		  } else {
+			return Math.floor(Math.random() * min) + 1
+		  }
+		}
+ function monospace(string) {
+            return '```' + string + '```'
+        }
 
 //_VOTAÇÃO BY TRASH/RESEN/ITALU/TOBI
 /*let posTest2 = false
@@ -1834,7 +1887,27 @@ if (isVotacao()) {
  }
 }
 //_FINAL DA CASE "VOTAÇÃO" 
-   
+
+   const levelRole = getLevelingLevel(sender)
+   	     var role = 'bronze'
+   	     if (levelRole <= 3) {
+   	         role = 'Cobre'
+   	     } else if (levelRole <= 5) {
+   	         role = 'Ferro'
+   	     } else if (levelRole <= 7) {
+   	         role = 'Prata'
+   	     } else if (levelRole <= 10) {
+   	         role = 'Ouro'
+   	     } else if (levelRole <= 12) {
+   	         role = 'Platina'
+   	     } else if (levelRole <= 15) {
+   	         role = 'Mithril'
+   	     } else if (levelRole <= 18) {
+   	         role = 'Oricalco'
+   	     } else if (levelRole <= 25) {
+   	         role = 'Adamante'
+   	     }
+
 //_FUCTION PATENTE
   const nivelAtual = getLevelingLevel(sender)
             var patt = 'Bronze I🥉'
@@ -2151,6 +2224,13 @@ prema = '𝙊 𝙘𝙧𝙞𝙖𝙙𝙤𝙧 👤'
 } else {
 var prema = '𝙈𝙚𝙢𝙗𝙧𝙤 𝙧𝙚𝙜𝙞𝙨𝙩𝙧𝙖𝙙𝙤😌'
 }
+ var elit = 'Aventureiro Comum'
+			if (isvipp) {
+				elit = 'Profissional de Aventureiro'
+			} 
+			if (isOwner) {
+				elit = 'Mestre do jogo'
+			}
 //_XP COM LEVELING ATIVO
 if (isGroup && isLevelingOn) {
 const currentLevel = getLevelingLevel(sender)
@@ -2278,6 +2358,8 @@ loli.sendMessage(from, yevel, image, {sendEphemeral: true, contextInfo: { forwar
 } catch (err) {
 console.error(err)
 }*/
+
+ 
 
 //_DINHEIRO 
 if (isGroup) {
@@ -2552,6 +2634,73 @@ esp.c1 = "🔲"; esp.c2 = "🔲"; esp.c3 = "🔲"
 tttset.tttstatus = "off"
 tttset.autoEndTime = "off"
 }
+const getHeal = (sender) => {
+        	let position = false
+              Object.keys(_healt).forEach ((i) => {
+              	if (_healt[position].id === sender) {
+              	   position = i
+                  }
+              })
+             if (position !== false) {
+                return _healt[position].healt
+            }
+        }
+
+
+            const healtAdd = (sender) => {
+             let position = false
+            Object.keys(_healt).forEach((i) => {
+                if (_healt[i].id == sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                _healt[position].healt += 10
+                fs.writeFileSync('./lib/rpg/healt.json', JSON.stringify(_healt))
+            }
+        }
+
+//funtion limited
+
+           const isHealt = (sender) =>{ 
+		      let position = false
+              for (let i of _healt) {
+              if (i.id === sender) {
+              	let healts = i.healt
+              if (healts >= healtawal ) {
+              	  position = true
+                    loli.sendMessage(from, ind.limitend(pushname), text, {quoted: mek})
+                    return true
+              } else {
+              	_healt
+                  position = true
+                  return false
+               }
+             }
+           }
+           if (position === false) {
+           	const obj = { id: sender, healt: 1 }
+                _healt.push(obj)
+                fs.writeFileSync('./lib/rpg/healt.json',JSON.stringify(_healt))
+           return false
+       }
+     }
+
+const bayarHealt = (sender, amount) => {
+        	let position = false
+            Object.keys(_healt).forEach((i) => {
+                if (_healt[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                _healt[position].healt -= amount
+                if (_healt[position].healt >= 0) return reply('sua saúde está cheia')
+                fs.writeFileSync('./lib/rpg/healt.json', JSON.stringify(_healt))
+            }
+        }
+       
+ 
         const sendMediaURL = async(to, url, text="", mids=[]) =>{
                 if(mids.length > 0){
                     text = normalizeMention(to, text, mids)
@@ -2581,6 +2730,56 @@ tttset.autoEndTime = "off"
                     fs.unlinkSync(filename)
                 });
             }   
+const checkHealt = (sender) => {
+          	let found = false
+                    for (let lmt of _healt) {
+                        if (lmt.id === sender) {
+                            const healthCounts = healtawal - lmt.healt
+                            if (healthCounts <= 0) return loli.sendMessage(from,`Sua solicitação de limite se esgotou\n\n_Observação: o limite será redefinido a cada 21:00!_`, text,{ quoted: mek})
+                          //  loli.sendMessage(from, `${healthCounts}`, text, { quoted : mek})
+                           if (!isPetualang) return reply(mess.only.player)
+ reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
+pp = monospace(`📍 𝗽𝗲𝗿𝗳𝗶𝗹 𝗮𝘃𝗲𝗻𝘁𝘂𝗿𝗲𝗶𝗿𝗼
+ • Nome : ${pushname}
+ • Rank : ${role}
+ • Status : ${elit}
+ • Cash : $${(getBalance(sender, balance))}
+ • Xp : ${getLevelingXp(sender)}/${reqXp}
+ • Level : ${getLevelingLevel(sender)}
+ 
+🎒 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝗶 :
+ • Cash: $${(getBalance(sender, balance))}💰
+ • Ouro : ${getEmas(sender)}🪙
+ • Ferro : ${getBesi(sender)}⛓️
+ • Diamante : ${getDm(sender)}💎
+ • Peixe : ${getFish(sender)}🎣
+🏔️ 𝗠𝗲𝗻𝘂 𝗥𝗣𝗚
+ • joinrpg
+ • quest ( otw )
+ • mining
+ • mancing
+ • adventure
+ • myinventori
+ • topleaderboard
+ 
+🛒 𝗦𝗲𝗹𝗹 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝘆
+ • sellikan
+ • sellbesi
+ • sellemas
+ • selldiamond`)
+		 const but = [{ buttonId: `${prefix}menu`, buttonText: { displayText: 'Back To Menu' }, type: 1 }]
+          sendButton(from, pp, 'rpg game', but)
+                            found = true
+                        }
+                    }
+                    if (found === false) {
+                        let obj = { id: sender, healt: 1 }
+                        _healt.push(obj)
+                        fs.writeFileSync('./lib/rpg/healt.json', JSON.stringify(_healt))
+                        loli.sendMessage(from, `${healthCounts}`, text, { quoted : mek})
+                    }
+				}
+
             
             const runtime = function(seconds) {
 	seconds = Number(seconds);
@@ -5134,6 +5333,230 @@ loli.sendMessage(from, buffer, image, {quoted: say1, caption: infomp3})
 loli.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: say1})
 break
 // arquivos henplay
+
+case 'joinrpg':
+addFilter(from)
+
+		  if (isPetualang) return reply('Você se tornou um aventureiro')
+	   	  _petualang.push(sender)
+		  fs.writeFileSync('./inventori.json', JSON.stringify(_petualang))
+		  capt = `Parabéns ${pushname}🎊\nVocê está registrado como um aventureiro!\nPor favor digite ${prefix}rpgmenu`
+		  loli.sendMessage(from, capt, text, {quoted: mek})		
+		  addInventori(sender)
+		  break
+
+case 'quest':
+ addFilter(from)
+ if (!isPetualang) return reply(mess.only.player)
+ listMsg = {
+ buttonText: 'LISTA DE MISSÃO',
+ footerText: `Copyright © zadik/Hori-BOT \n\MES📅: ${bulan1} \n\HORA⏰: ${hr} \n\DIA☀️: ${hari}`,
+ description: `Olá ${pushname}, sou Hori!!\nSou o administradora da missão neste grupo! \nPor favor, escolha uma missão que corresponda ao seu nível!💜`,
+ sections: [
+                     {
+                      "title": `Escolha a missão de acordo com o seu nível!`,
+  rows: [
+                          {
+                              "title": "Matar Slime, Lvl Bronze",
+                              "rowId": "slime"
+                           },
+                           {
+                              "title": "Matar Goblin, Lvl prata",
+                              "rowId": "!goblin"
+                           },
+                           {
+                              "title": "Matar Evil Eye, Lvl ouro",
+                              "rowId": "evil"
+                           },
+                           {
+                              "title": "Matar Behemoth, Lvl platinum",
+                              "rowId": "behemoth"
+                           },                            
+                           {
+                              "title": "Matar Cockatrice, Lvl Mithril",
+                              "rowId": "!cockatrice"
+                           },
+                           {
+                              "title": "Matar Four Fiends, Lvl Oricalco",
+                              "rowId": "!4fiends"
+                           },
+                           {
+                              "title": "Matar Demond King, Lvl Adamante",
+                              "rowId": "!demondking"
+                           }
+                        ]
+                     }],
+ listType: 1
+}
+loli.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:say1})
+break
+
+case 'aventura':
+addFilter(from)
+          if (isHealt(sender)) return reply('Cura')
+          if (!isPetualang) return reply(mess.only.player)		
+	      ngab = ['Longsor','Letusan Gunung','Tsunami','Gempa Bumi','Meteor','Demon']
+	      const sesuatu = ngab[Math.floor(Math.random() * ngab.length)]
+          const dungeon =['Whetstone','Willow Field','Rodeo','Verdant Blufs','Bull Holland','Fallen Tree','Dellnort','Verona Lush','Leafy Hollow','Chilliad Dome','Garcia','Pine Valley','Santa Florals','Guvero East','Cranbarry','Junever','Aldea Malvada','Green Palms','Green Oasis','Fort Carson','Prickel Pine','Pilson Meadow','Boca Roca','Rocksore East','Camel Toe','Hanky Panky','Fern Ridge','Montgomerry','Flint Yankton','Vespucci','fortress city', 'ravines valley', 'horizon valley', 'cyber city', 'end city', 'templar city', 'pochinki', 'peak','Vertical Zone','Sentainel Country','Night City','Flush City','Royals Canyon','Blackburn','Peterborough','Tarnstead','Jarren’s','Outpost','Landow','Nearon','Kincardine','Aysgarth','Veritas','Openshaw','Bredwardine','Berkton','Wolford','Norwich','Kald','Solaris','Kilead','Pitmerden','Acomb','Eldham','Warcester','Lingmell','Kilead','Cromerth','Wingston','Garmsby','Kingcardine','Perthlochry','Frostford','Hillford','Hardersfield','Tarrin','Holmfirth','Caerleon','Elisyum','Ballaeter','Penshaw','Bradford','Wigston','Accreton','Kameeraska','Ferncombe','Kilerth','Erostey','Carran','Jongvale','Larnwick','Queenstown','Whaelrdrake','Baerney','Wingston','Arkney','Strongfair','Lowestoft','Beggar’s Hole','Shepshed','Perthlochry','Ironforge','Tywardreath','Pontheugh','Foolshope','Hull','Dalmerlington','Aucteraden','Woodpine','Millstone','Windermere','Lancaster','Kirkwall','Rotherhithe','Astrakhan','Watford','Ritherhithe','Krosstoen','Pella’s','Wish','Grimsby','Ayrith','Ampleforth','Skystead','Eanverness','Penshaw','Peatsland','Astrakane','Pontybridge','Caershire','Snowbush','Sutton','Northwich','Hogsfeet','Claethorpes','Sudbury','Cherrytown','Blue Field','Orrinshire','Aempleforth','Garrigill','Jedburgh','Eastbourne','Taedmorden','Venzor','Grasmere','Ubbin','Falls','Violl’s Garden','Glanchester','Bailymena','Arkkukari','Skargness','Cardend','Llanybydder','Faversham','Yellowseed','Carlisle','Cirencester','Aramoor','Furness','Kincardine','Rotherham','Emelle','Boroughton','Carran','Ffestiniog','Mansfield','Huthwaite','Marclesfield','Pavv','Squall’s End','Glenarm','Dragontail','Moressley','Hardersfield','Gilramore','Aria','Ecrin','Clare View Point','Blackburn','Oakheart','Doonatel','Broughton','Carlisle','Murlayfield','Nuxvar']
+	      const ad = dungeon[Math.floor(Math.random() * dungeon.length)]
+	      anu = fs.readFileSync('./lib/rpg/dungeon.js');
+          jsonData = JSON.parse(anu);
+	      randIndex = Math.floor(Math.random() * jsonData.length);
+          randKey = jsonData[randIndex];
+	      hasm = await getBuffer(randKey.result)  
+	      const adven = Math.ceil(Math.random() * 1000)          
+	      const money = Math.ceil(Math.random() * 300)					      	      
+	      setTimeout( () => {		
+          caption = monospace(`「 MORTE 」\n\n • O lugar  ${ad}\n • CASH : ${money}\n • EXP : ${adven}Xp`)
+          but = [
+          { buttonId: `${prefix}inventario`, buttonText: { displayText: 'inventario' }, type: 1 }]
+          sendButLocation(from, caption, 'DUNGEON', hasm, but, {quoted: mek})   
+          }, 7000)
+          setTimeout( () => {
+		  loli.sendMessage(from, `atenção`, text) 
+		  }, 5000) // 1000 = 1s,
+	      setTimeout( () => {
+		  loli.sendMessage(from, `De repente lá ${sesuatu}`, text) 
+		  }, 3000) // 1000 = 1s,
+		  setTimeout( () => {
+		  loli.sendMessage(from, `${pushname} em uma aventura`, text) 
+		  }, 1500) // 1000 = 1s,
+		  addLevelingXp(sender, adven)
+		  addBalance(sender, money, balance) 
+          limitAdd(sender, limit) 
+          await healtAdd(sender)
+          break
+
+case 'minerar':   
+addFilter(from)
+   	      if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(mess.limit) 
+   	      if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(mess.only.player)
+          pp = randomNomor(75)
+          emas = randomNomor(15)
+          dm = randomNomor(3)
+          besi = randomNomor(50)
+          done = monospace(`Finalizar Mineração🚧\nlistar resultados :\nOuro : ${emas}🪙\ncash : $${pp}💰\nFerro : ${besi}⛓️\nDiamante : ${dm}💎`)
+          addBalance(sender, pp, balance)          
+          addBesi(sender, besi)
+          addEmas(sender, emas)
+          addDm(sender, dm)
+          mining = ('espere está balançando...')
+		  setTimeout( () => {		//case by zadik
+		  const but = [{ buttonId: `${prefix}mining`, buttonText: { displayText: 'Minerar novamente' }, type: 1 }]
+          sendButton(from, done, 'Mining', but)
+		  }, 9000) // 1000 = 1s,
+		  setTimeout( () => {
+		  loli.sendMessage(from, '🚧 terminou de escrever. . .🪙👷', text) 
+		  }, 7000) // 1000 = 1s,
+	      setTimeout( () => {
+		  loli.sendMessage(from, '🚧 encontrar ouro. . .⚒️🏔️️️', text) 
+		  }, 4000) // 1000 = 1s,
+		  setTimeout( () => {
+		  loli.sendMessage(from, '🚧 iniciar a mineração. . .⚒️🏔️️', text) 
+		  }, 1500) // 1000 = 1s,
+		  setTimeout( () => {
+		  loli.sendMessage(from, mining, text, {quoted: mek}) 
+		  }, 0) // 1000 = 1s,
+	      break
+
+ case 'pescar':
+          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(mess.limit) 
+          if (!isPetualang) return reply(mess.only.player)	
+          ikannya = ikan[Math.floor(Math.random() * ikan.length)]
+	      xp = Math.ceil(Math.random() * 350)          
+	      coin = randomNomor(50)	    
+	      ditangkap = Math.ceil(Math.random() * 50)
+	      cing = await getBuffer(`https://telegra.ph/file/d9b15de4f661808dfd0b9.jpg`)
+	      setTimeout( () => {
+	      caption = monospace(`「 pescaria」\n\n • A pegada : ${ikannya}\n • Ganho total : ${ditangkap} Peixe\n • CASH : ${coin}\n • EXP : ${xp}Xp`)
+          but = [
+          { buttonId: '${prefix}mancing', buttonText: { displayText: 'Pescar novamente' }, type: 1 },
+          { buttonId: '${prefix}myinventori', buttonText: { displayText: 'Verificar inventário' }, type: 1 }
+           ]
+          sendButLocation(from, caption, 'pescaria', cing, but, {quoted: mek})      
+          }, 6000)
+          setTimeout( () => {
+		  loli.sendMessage(from, 'Obter Peixes com Sucesso. . .', text) 
+		  }, 5000) // 1000 = 1s,
+	      setTimeout( () => {
+		  loli.sendMessage(from, '🎣Puxe o gancho. . .', text) 
+		  }, 3000) // 1000 = 1s,
+		  setTimeout( () => {
+		  loli.sendMessage(from, '🎣Comece a pescar. . .', text) 
+		  }, 1500) // 1000 = 1s,
+		  addFish(sender, ditangkap)
+		  addLevelingXp(sender, xp)
+		  addBalance(sender, coin, balance) 
+          limitAdd(sender, limit)         
+	      break
+
+ case 'venderpeixe':
+          if (!isGroup) return reply(mess.only.group) 
+          if (!isPetualang) return reply(mess.only.player)
+          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
+          jmlh = body.slice(10)
+          rp = 5 * jmlh
+          if (getFish(sender) < jmlh) return reply(`Seu peixe não é suficiente`)
+          sellFish(sender, jmlh, balance)
+          addBalance(sender, rp, balance) 
+          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor : ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Peixe : 5\n • Situação: Sucesso \n • Restos de Peixe : ${getFish(sender)}\n • Resultados de vendas : $${rp}`)
+          but = [{ buttonId: '${prefix}inventario', buttonText: { displayText: 'Cek Inventori' }, type: 1 }]
+          sendButton(from, capti, 'venda', but)          
+          break
+    case 'venderferro':
+          if (!isGroup) return reply(mess.only.group)
+          if (!isPetualang) return reply(mess.only.player)
+          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
+          jmlh = body.slice(10)
+          rp = 10 * jmlh
+          if (getBesi(sender) < jmlh) return reply(`Seu ferro não é suficiente`)
+          sellBesi(sender, jmlh, balance)
+          addBalance(sender, rp, balance) 
+          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor : ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Ferro : 10\n • Situação: Sucesso \n • Restos de Ferro : ${getBesi(sender)}\n • Resultados de vendas : $${rp}`)
+          but = [{ buttonId: '${prefix}inventario', buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
+          sendButton(from, capti, 'venda', but)                    
+          break          
+    case 'venderouro':
+          if (!isGroup) return reply(mess.only.group)
+          if (!isPetualang) return reply(mess.only.player)
+          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
+          jmlh = body.slice(10)
+          rp = 25 * jmlh
+          if (getEmas(sender) < jmlh) return reply(`Seu ouro não é suficiente`)
+          sellEmas(sender, jmlh, balance)
+          addBalance(sender, rp, balance) 
+          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor: ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/ouro : 25\n • Situação: Sucesso \n • Ouro restante : ${getEmas(sender)}\n • Resultados de vendas : $${rp}`)
+          but = [{ buttonId: '${prefix}inventario', buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
+          sendButton(from, capti, 'venda', but)                    
+          break 
+    case 'venderdiamante':
+          if (!isGroup) return reply(mess.only.group)
+          if (!isPetualang) return reply(mess.only.player)
+          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
+          ttl = body.slice(13)
+          var etoo = 75 * ttl
+          if (getDm(sender) < ttl) return reply(`Seu ferro não é suficiente`)
+          sellDm(sender, ttl)
+          addBalance(sender, etoo, balance) 
+          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor: ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Diamante : 75\n • Situação: Sucesso \n • Diamante restante : ${getDm(sender)}\n • Resultados de vendas : $${etoo}`)
+          but = [{ buttonId: '${prefix}inventario', buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
+          sendButton(from, capti, 'venda', but)                    
+          break       
+	
+
+case 'inventario':
+case 'inventário':
+ if (!isPetualang) return reply(mess.only.player)
+const useLevel32 = getLevelingLevel(sender)
+var reqXp  = 20 * Math.pow(useLevel32, 2) + 150 * useLevel32 + 1000
+done = monospace(`📍 𝗽𝗲𝗿𝗳𝗶𝗹 𝗮𝘃𝗲𝗻𝘁𝘂𝗿𝗲𝗶𝗿𝗼\n • Nome : ${pushname}\n • Rank : ${role}\n • Status : ${elit}\n • Xp : ${getLevelingXp(sender)}/${reqXp}\n • Level : ${getLevelingLevel(sender)}\n🎒 ɪɴᴠᴇɴᴛᴀʀɪᴏ :\n • Ouro : ${getEmas(sender)}🪙\n • cash : ${(getBalance(sender, balance))}💰\n • Ferro : ${getBesi(sender)}⛓️\n • Diamante : ${getDm(sender)}💎\n • Peixe : ${getFish(sender)}🎣`)
+but = [{ buttonId: `${prefix}aventura`, buttonText: { displayText: 'Aventura' }, type: 1 }]
+          sendButton(from, done, 'Inventário do usuário', but)
+break
+
+
+
 case 'anime':
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
@@ -5333,6 +5756,31 @@ case 'rankativo':
 						await loli.sendMessage(from, `*É necessário 3 jogadores para se construir um ranking*`, text, {quoted: say1})
 					}
 				break
+case 'rpgmenu':
+addFilter(from)
+const rpg1 = fs.readFileSync('./src/rpgmenu.mp4')
+loli.sendMessage(from, rpg1,  MessageType.video, {mimetype: 'video/gif', quoted: say1, caption: `
+🎒 𝗶𝗻𝘃𝗲𝗻𝘁𝗮𝗿𝗶𝗼 :
+ • Cash: $${(getBalance(sender, balance))}💰
+ • Ouro : ${getEmas(sender)}🪙
+ • Ferro : ${getBesi(sender)}⛓️
+ • Diamante : ${getDm(sender)}💎
+ • Peixe : ${getFish(sender)}🎣
+🏔️ 𝗠𝗲𝗻𝘂 𝗥𝗣𝗚
+ • joinrpg
+ • minerar
+ • pescar
+ • aventura
+ • inventario
+ • ranklevel
+ 
+🛒 𝘃𝗲𝗻𝗱𝗲𝗿 𝗶𝗻𝘃𝗲𝗻𝘁𝗮𝗿𝗶𝗼
+ • venderpeixe
+ • venderferro
+ • venderouro
+ • venderdiamante`})
+break
+
 case 'checkativo':
 					if (!isGroup) return reply(mess.only.group)
                                         if (!isGroupAdmins) return reply(mess.only.admin)
@@ -13857,6 +14305,11 @@ const pf =
   ‣ XP: ${usXp}/${requirXp}
   ‣ Dinheiro: ${dindin1}💸
   ‣ Patente: ${patt}
+  ‣ Cash: $${(getBalance(sender, balance))}💰
+  ‣ Ouro : ${getEmas(sender)}🪙
+  ‣ Ferro : ${getBesi(sender)}⛓️
+  ‣ Diamante : ${getDm(sender)}💎
+  ‣ Peixe : ${getFish(sender)}🎣
   ‣ link: wa.me/${sender.split("@")[0]}
   ‣ Código: ${serh}
 `
@@ -14250,21 +14703,7 @@ await reply(`10 Pessoas No grupo!`)
 }
 break
 
-case 'minerar':
-addFilter(from)
-if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-///if (isLimit(sender)) return reply(ind.limitend(pushname))
-///if (!isEventon) return reply(`Desculpe ${pushname} a mineração de eventos não é ativada pelo proprietário`)
-if (isOwner) {
-const one = Math.ceil(Math.random() * 10000)
-addLevelingXp(sender, one)
-await reply(`${NomeDoBot} te dá um presente, ${NomeDoBot} vai lhe dar uma proibição *${one}Xp* para você`)
-}else{
-const mining = Math.ceil(Math.random() * 10000)
-addLevelingXp(sender, mining)
-await reply(`*Parabéns* ${pushname} você pega *${mining}Xp* da ${NomeDoBot}`)
-}
-break
+
 
 case 'm18': 
 addFilter(from)
