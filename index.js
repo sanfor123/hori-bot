@@ -8977,19 +8977,19 @@ loli.sendMessage(from, patentegif2,  MessageType.video, {mimetype: 'video/gif', 
 break
                     
 
-case 'play':
+case 'play4':
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (args.length < 1) return reply(`Exemplo : ${prefix}cradles`)	
 reply(mess.wait)
 play = args.join(" ")
-anu = await fetchJson(`https://api-alphabot.herokuapp.com/api/downloader/youtube/playmp3?query=${play}&apikey=Alphabot`)
+anu = await fetchJson(`https://hardianto.xyz/api/yt/playmp3?query=${play}&apikey=hardianto`)
 if (anu.error) return reply(anu.error)
-infomp3 = `「 ⭐*HENPLAY MUSIC*⭐」\n\n*• Título:* ${anu.results.title}\n*• Tamanho:* ${anu.results.size}\n*• Canal:* ${anu.results.channel}\n\n\n*💜 DOWNLOAD  CONCLUÍDO 💜*`
-buffer = await getBuffer(anu.results.thumb)
-lagu = await getBuffer(anu.results.result)
+infomp3 = `「 ⭐*HENPLAY MUSIC*⭐」\n\n*• Título:* ${anu.title}\n*• Data:* ${anu.published}\n*• Canal:* ${anu.channel}\n\n\n*💜 DOWNLOAD  CONCLUÍDO 💜*`
+buffer = await getBuffer(anu.thumb)
+lagu = await getBuffer(anu.url)
 loli.sendMessage(from, buffer, image, {quoted: say1, caption: infomp3})
-loli.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', ptt:true, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg","caption": ` ${groupName}`, 'jpegThumbnail': await getBuffer(anu.results.thumb)}}}})
+loli.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', ptt:true, quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg","caption": ` ${groupName}`, 'jpegThumbnail': await getBuffer(anu.thumb)}}}})
 break
 
 case 'playmp4':
@@ -9065,7 +9065,7 @@ loli.sendMessage(from, buffer, image, {quoted: say1, caption: infomp3})
 lagu = await getBuffer(anu.result.audio)				
 loli.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.result.title}.mp3`, quoted: say1})
 break
-case 'play4':
+case 'play':
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
                 reply(mess.wait)
@@ -9083,9 +9083,9 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
                     ini_txt += `*Dislike* : ${get_info.dislike}\n`
                     ini_txt += `*💜 DOWNLOAD  CONCLUÍDO 💜*` 
                     ini_buffer = await getBuffer(get_info.thumbnail)
-                    loli.sendMessage(from, ini_buffer, image, { quoted: mek, thumbnail:null, caption: ini_txt })
+                    loli.sendMessage(from, ini_buffer, image, { quoted: say1, thumbnail:null, caption: ini_txt })
                     get_audio = await getBuffer(get_result.audio.link)
-                    loli.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', filename: `${get_info.title}.mp3`, quoted: mek, thumbnail:null})
+                    loli.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', filename: `${get_info.title}.mp3`, quoted: horiaud, thumbnail:null})
                  break
 // MENU +18 DE HENTAI LOLHUMAN
        case 'milf':
