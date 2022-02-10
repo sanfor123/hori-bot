@@ -1727,7 +1727,7 @@ levelnol: 'TESTE TESTE',
 error: {
 stick: '[❗] Falha, ocorreu um erro ao converter a imagem em um adesivo ❌',
 Iv: '❌ Link inválido ❌',
-limit: `Opa desculpa onii-chan ${pushname} seu limite acabou`,
+limit: `Opa desculpa onii-chan seu limite acabou`,
 only: {
 tobiowber: `Esse comando só pode ser usado por ${SeuNome}`,
 tobiplays: `⏳Comando ${command} aguarde alguns instantes...⏳\n\nA sua música será enviada em até 2 minutos\nCaso não envie, tente especificar o nome da música.`,
@@ -1735,7 +1735,7 @@ tobiattp: 'Aguarde nii-san😊\n\nCaso não funcione, use o comando novamente.�
 tobianime: `Ohayo Oni-chan, Comando ${command} Vai demorar alguns segundos...`,
 tobirply: `[❗] Comando ${command} ja esta ativado!`,
 group: '[❗] Este comando só pode ser usado em grupos! ❌',
-player: `Desculpe onii-chan ${pushname} parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`,
+player: `Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`,
 					premium: `[❗] ESTE PEDIDO É SO PARA *USUÁRIOS VIP*`,
 					mod: `[❗] ESTE PEDIDO É ESPECÍFICO PARA USUARIO MOD HORI BOT*`,
 					benned: `Você para a banda, por favor, contate o proprietário para abrir sua banda`,
@@ -5394,7 +5394,9 @@ break
 case 'aventura':
 addFilter(from)
           if (isHealt(sender)) return reply('Cura')
-          if (!isPetualang) return reply(mess.only.player)		
+       if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
+   	      if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)		
 	      ngab = ['Longsor','Letusan Gunung','Tsunami','Gempa Bumi','Meteor','Demon']
 	      const sesuatu = ngab[Math.floor(Math.random() * ngab.length)]
           const dungeon =['Whetstone','Willow Field','Rodeo','Verdant Blufs','Bull Holland','Fallen Tree','Dellnort','Verona Lush','Leafy Hollow','Chilliad Dome','Garcia','Pine Valley','Santa Florals','Guvero East','Cranbarry','Junever','Aldea Malvada','Green Palms','Green Oasis','Fort Carson','Prickel Pine','Pilson Meadow','Boca Roca','Rocksore East','Camel Toe','Hanky Panky','Fern Ridge','Montgomerry','Flint Yankton','Vespucci','fortress city', 'ravines valley', 'horizon valley', 'cyber city', 'end city', 'templar city', 'pochinki', 'peak','Vertical Zone','Sentainel Country','Night City','Flush City','Royals Canyon','Blackburn','Peterborough','Tarnstead','Jarren’s','Outpost','Landow','Nearon','Kincardine','Aysgarth','Veritas','Openshaw','Bredwardine','Berkton','Wolford','Norwich','Kald','Solaris','Kilead','Pitmerden','Acomb','Eldham','Warcester','Lingmell','Kilead','Cromerth','Wingston','Garmsby','Kingcardine','Perthlochry','Frostford','Hillford','Hardersfield','Tarrin','Holmfirth','Caerleon','Elisyum','Ballaeter','Penshaw','Bradford','Wigston','Accreton','Kameeraska','Ferncombe','Kilerth','Erostey','Carran','Jongvale','Larnwick','Queenstown','Whaelrdrake','Baerney','Wingston','Arkney','Strongfair','Lowestoft','Beggar’s Hole','Shepshed','Perthlochry','Ironforge','Tywardreath','Pontheugh','Foolshope','Hull','Dalmerlington','Aucteraden','Woodpine','Millstone','Windermere','Lancaster','Kirkwall','Rotherhithe','Astrakhan','Watford','Ritherhithe','Krosstoen','Pella’s','Wish','Grimsby','Ayrith','Ampleforth','Skystead','Eanverness','Penshaw','Peatsland','Astrakane','Pontybridge','Caershire','Snowbush','Sutton','Northwich','Hogsfeet','Claethorpes','Sudbury','Cherrytown','Blue Field','Orrinshire','Aempleforth','Garrigill','Jedburgh','Eastbourne','Taedmorden','Venzor','Grasmere','Ubbin','Falls','Violl’s Garden','Glanchester','Bailymena','Arkkukari','Skargness','Cardend','Llanybydder','Faversham','Yellowseed','Carlisle','Cirencester','Aramoor','Furness','Kincardine','Rotherham','Emelle','Boroughton','Carran','Ffestiniog','Mansfield','Huthwaite','Marclesfield','Pavv','Squall’s End','Glenarm','Dragontail','Moressley','Hardersfield','Gilramore','Aria','Ecrin','Clare View Point','Blackburn','Oakheart','Doonatel','Broughton','Carlisle','Murlayfield','Nuxvar']
@@ -5409,7 +5411,7 @@ addFilter(from)
 	      setTimeout( () => {		
           caption = monospace(`「 MORTE 」\n\n • O lugar  ${ad}\n • CASH : ${money}\n • EXP : ${adven}Xp`)
           but = [
-          { buttonId: `${prefix}inventario`, buttonText: { displayText: 'inventario' }, type: 1 }]
+          { buttonId: `${prefix}inventario`, buttonText: { displayText: 'MOCHILA' }, type: 1 }]
           sendButLocation(from, caption, 'DUNGEON', hasm, but, {quoted: mek})   
           }, 7000)
           setTimeout( () => {
@@ -5429,9 +5431,9 @@ addFilter(from)
 
 case 'minerar':   
 addFilter(from)
-   	      if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(mess.limit) 
+   	      if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
    	      if (!isGroup) return reply(mess.only.group)                                                     
-          if (!isPetualang) return reply(mess.only.player)
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           pp = randomNomor(75)
           emas = randomNomor(15)
           dm = randomNomor(3)
@@ -5443,7 +5445,7 @@ addFilter(from)
           addDm(sender, dm)
           mining = ('espere está balançando...')
 		  setTimeout( () => {		//case by zadik
-		  const but = [{ buttonId: `${prefix}mining`, buttonText: { displayText: 'Minerar novamente' }, type: 1 }]
+		  const but = [{ buttonId: `${prefix}minerar`, buttonText: { displayText: 'Minerar novamente' }, type: 1 }]
           sendButton(from, done, 'Mining', but)
 		  }, 9000) // 1000 = 1s,
 		  setTimeout( () => {
@@ -5461,8 +5463,9 @@ addFilter(from)
 	      break
 
  case 'pescar':
-          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(mess.limit) 
-          if (!isPetualang) return reply(mess.only.player)	
+          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
+   	      if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)	
           ikannya = ikan[Math.floor(Math.random() * ikan.length)]
 	      xp = Math.ceil(Math.random() * 350)          
 	      coin = randomNomor(50)	    
@@ -5471,8 +5474,8 @@ addFilter(from)
 	      setTimeout( () => {
 	      caption = monospace(`「 pescaria」\n\n • A pegada : ${ikannya}\n • Ganho total : ${ditangkap} Peixe\n • CASH : ${coin}\n • EXP : ${xp}Xp`)
           but = [
-          { buttonId: '${prefix}mancing', buttonText: { displayText: 'Pescar novamente' }, type: 1 },
-          { buttonId: '${prefix}myinventori', buttonText: { displayText: 'Verificar inventário' }, type: 1 }
+          { buttonId: '${prefix}pescar', buttonText: { displayText: 'Pescar novamente' }, type: 1 },
+          { buttonId: '${prefix}inventario', buttonText: { displayText: 'Verificar inventário' }, type: 1 }
            ]
           sendButLocation(from, caption, 'pescaria', cing, but, {quoted: mek})      
           }, 6000)
@@ -5492,8 +5495,9 @@ addFilter(from)
 	      break
 
  case 'venderpeixe':
-          if (!isGroup) return reply(mess.only.group) 
-          if (!isPetualang) return reply(mess.only.player)
+          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
+   	      if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh = body.slice(10)
           rp = 5 * jmlh
@@ -5505,8 +5509,9 @@ addFilter(from)
           sendButton(from, capti, 'venda', but)          
           break
     case 'venderferro':
-          if (!isGroup) return reply(mess.only.group)
-          if (!isPetualang) return reply(mess.only.player)
+          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
+   	      if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh = body.slice(10)
           rp = 10 * jmlh
@@ -5518,8 +5523,9 @@ addFilter(from)
           sendButton(from, capti, 'venda', but)                    
           break          
     case 'venderouro':
-          if (!isGroup) return reply(mess.only.group)
-          if (!isPetualang) return reply(mess.only.player)
+          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
+   	      if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh = body.slice(10)
           rp = 25 * jmlh
@@ -5531,8 +5537,9 @@ addFilter(from)
           sendButton(from, capti, 'venda', but)                    
           break 
     case 'venderdiamante':
-          if (!isGroup) return reply(mess.only.group)
-          if (!isPetualang) return reply(mess.only.player)
+          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
+   	      if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           ttl = body.slice(13)
           var etoo = 75 * ttl

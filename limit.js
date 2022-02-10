@@ -2,7 +2,7 @@ const fs = require('fs')
 
 exports.isLimit = function(sender, isvipp, isOwner, limitCount, _db){
     if (isOwner) return false
-    if (isPremium) return false
+    if (isvipp) return false
     let found = false
     for (let i of _db) {
         if (i.id === sender) {
