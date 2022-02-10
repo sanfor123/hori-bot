@@ -5475,7 +5475,7 @@ addFilter(from)
 	      caption = monospace(`「 pescaria」\n\n • A pegada : ${ikannya}\n • Ganho total : ${ditangkap} Peixe\n • CASH : ${coin}\n • EXP : ${xp}Xp`)
           but = [
           { buttonId: '${prefix}pescar', buttonText: { displayText: 'Pescar novamente' }, type: 1 },
-          { buttonId: '${prefix}inventario', buttonText: { displayText: 'Verificar inventário' }, type: 1 }
+          { buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }
            ]
           sendButLocation(from, caption, 'pescaria', cing, but, {quoted: mek})      
           }, 6000)
@@ -5505,7 +5505,7 @@ addFilter(from)
           sellFish(sender, jmlh, balance)
           addBalance(sender, rp, balance) 
           capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor : ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Peixe : 5\n • Situação: Sucesso \n • Restos de Peixe : ${getFish(sender)}\n • Resultados de vendas : $${rp}`)
-          but = [{ buttonId: '${prefix}inventario', buttonText: { displayText: 'Cek Inventori' }, type: 1 }]
+          but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
           sendButton(from, capti, 'venda', but)          
           break
     case 'venderferro':
@@ -5519,7 +5519,7 @@ addFilter(from)
           sellBesi(sender, jmlh, balance)
           addBalance(sender, rp, balance) 
           capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor : ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Ferro : 10\n • Situação: Sucesso \n • Restos de Ferro : ${getBesi(sender)}\n • Resultados de vendas : $${rp}`)
-          but = [{ buttonId: '${prefix}inventario', buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
+          but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
           sendButton(from, capti, 'venda', but)                    
           break          
     case 'venderouro':
@@ -5533,7 +5533,7 @@ addFilter(from)
           sellEmas(sender, jmlh, balance)
           addBalance(sender, rp, balance) 
           capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor: ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/ouro : 25\n • Situação: Sucesso \n • Ouro restante : ${getEmas(sender)}\n • Resultados de vendas : $${rp}`)
-          but = [{ buttonId: '${prefix}inventario', buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
+          but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
           sendButton(from, capti, 'venda', but)                    
           break 
     case 'venderdiamante':
@@ -5547,7 +5547,7 @@ addFilter(from)
           sellDm(sender, ttl)
           addBalance(sender, etoo, balance) 
           capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor: ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Diamante : 75\n • Situação: Sucesso \n • Diamante restante : ${getDm(sender)}\n • Resultados de vendas : $${etoo}`)
-          but = [{ buttonId: '${prefix}inventario', buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
+          but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
           sendButton(from, capti, 'venda', but)                    
           break       
 	
