@@ -5554,7 +5554,7 @@ addFilter(from)
 
 case 'inventario':
 case 'inventário':
- if (!isPetualang) return reply(mess.only.player)
+ if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
 const useLevel32 = getLevelingLevel(sender)
 var reqXp  = 20 * Math.pow(useLevel32, 2) + 150 * useLevel32 + 1000
 done = monospace(`📍 𝗽𝗲𝗿𝗳𝗶𝗹 𝗮𝘃𝗲𝗻𝘁𝘂𝗿𝗲𝗶𝗿𝗼\n • Nome : ${pushname}\n • Rank : ${role}\n • Status : ${elit}\n • Xp : ${getLevelingXp(sender)}/${reqXp}\n • Level : ${getLevelingLevel(sender)}\n🎒 ɪɴᴠᴇɴᴛᴀʀɪᴏ :\n • Ouro : ${getEmas(sender)}🪙\n • cash : ${(getBalance(sender, balance))}💰\n • Ferro : ${getBesi(sender)}⛓️\n • Diamante : ${getDm(sender)}💎\n • Peixe : ${getFish(sender)}🎣`)
