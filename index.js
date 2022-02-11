@@ -5446,10 +5446,10 @@ addFilter(from)
           mining = ('espere está balançando...')
 		  setTimeout( () => {		//case by zadik
 		  const but = [{ buttonId: `${prefix}minerar`, buttonText: { displayText: 'Minerar novamente' }, type: 1 }]
-          sendButton(from, done, 'Mining', but)
+          sendButton(from, done, 'Mineração', but)
 		  }, 9000) // 1000 = 1s,
 		  setTimeout( () => {
-		  loli.sendMessage(from, '🚧 terminou de escrever. . .🪙👷', text) 
+		  loli.sendMessage(from, '🚧 terminou de escavar. . .🪙👷', text) 
 		  }, 7000) // 1000 = 1s,
 	      setTimeout( () => {
 		  loli.sendMessage(from, '🚧 encontrar ouro. . .⚒️🏔️️️', text) 
@@ -5499,7 +5499,7 @@ addFilter(from)
    	      if (!isGroup) return reply(mess.only.group)                                                     
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
-          jmlh = body.slice(10)
+          jmlh =  args.join(" ")
           rp = 5 * jmlh
           if (getFish(sender) < jmlh) return reply(`Seu peixe não é suficiente`)
           sellFish(sender, jmlh, balance)
@@ -5513,7 +5513,7 @@ addFilter(from)
    	      if (!isGroup) return reply(mess.only.group)                                                     
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
-          jmlh = body.slice(10)
+          jmlh = args.join(" ")
           rp = 10 * jmlh
           if (getBesi(sender) < jmlh) return reply(`Seu ferro não é suficiente`)
           sellBesi(sender, jmlh, balance)
@@ -5527,7 +5527,7 @@ addFilter(from)
    	      if (!isGroup) return reply(mess.only.group)                                                     
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
-          jmlh = body.slice(10)
+          jmlh = args.join(" ")
           rp = 25 * jmlh
           if (getEmas(sender) < jmlh) return reply(`Seu ouro não é suficiente`)
           sellEmas(sender, jmlh, balance)
@@ -5541,7 +5541,7 @@ addFilter(from)
    	      if (!isGroup) return reply(mess.only.group)                                                     
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
-          ttl = body.slice(13)
+          ttl = args.join(" ")
           var etoo = 75 * ttl
           if (getDm(sender) < ttl) return reply(`Seu ferro não é suficiente`)
           sellDm(sender, ttl)
@@ -5764,6 +5764,7 @@ case 'rankativo':
 					}
 				break
 case 'rpgmenu':
+case 'menurpg':
 addFilter(from)
 const rpg1 = fs.readFileSync('./src/rpgmenu.mp4')
 loli.sendMessage(from, rpg1,  MessageType.video, {mimetype: 'video/gif', quoted: say1, caption: `
@@ -5780,6 +5781,7 @@ loli.sendMessage(from, rpg1,  MessageType.video, {mimetype: 'video/gif', quoted:
  • aventura
  • inventario
  • ranklevel
+ • buymoney
  
 🛒 𝘃𝗲𝗻𝗱𝗲𝗿 𝗶𝗻𝘃𝗲𝗻𝘁𝗮𝗿𝗶𝗼
  • venderpeixe
@@ -8062,6 +8064,21 @@ if (vipp.includes(sender)) return reply("❌ Só pode comprar VIP uma vez! ❌")
 					await reply(`👸COMPRA BEM SUCEDIDA👸\n\nObrigado por comprar o vip ${pushname}\n*preço do vip* : ${koinPerlimit2}\n*o resto do seu dinheiro* : ${checkATMuser(sender)}💵\n\n*compra bem sucedida com o id :* \n*💳: ${createSerial(15)}*`)				
 					}
 				break
+
+case 'buymoney':{
+               addFilter(from)
+         if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)  
+          payout2 = 1
+          const ane = 50000 * payout2
+          const nrolxp1 = Number(100000) 
+          if (getBalance(sender, balance) < ane) return reply(`Seu saldo não é suficiente para esta compra\n\Valor Do pacote 50k de Cash = 100k de dinheiro principal do bot`)
+          kurangBalance(sender, ane, balance)
+          addKoinUser(sender, nrolxp1)
+          await reply(`👸COMPRA BEM SUCEDIDA👸\n\nObrigado por comprar\nSaldo Restante do Cash :  $${(getBalance(sender, balance))}\nSeu Dinheiro ${checkATMuser(sender)}💵\n\n*compra bem sucedida com o id :* \n*💳: ${createSerial(15)}* `)
+          }
+          break 
+
 				case 'loja':            				
 				try {
 			if (!isRegistered) return reply(ptbr.rg(prefix, pushname))//PEDI O REGISTRO

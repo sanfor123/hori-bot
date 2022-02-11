@@ -1,9 +1,9 @@
 {
-  "status": false,
-  "session": "5522997278794-1630787991@g.us",
+  "status": true,
+  "session": "5519998048764-1633034423@g.us",
   "turn": "X",
-  "X": "556791575531",
-  "O": "5521971702453",
+  "X": null,
+  "O": null,
   "isWin": false,
   "winner": null,
   "nine_push": [],
