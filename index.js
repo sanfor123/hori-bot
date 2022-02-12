@@ -1314,7 +1314,6 @@ const isRegistered = checkRegisteredUser(sender) //Registro
 
 //Modo de RPG de banco de dados por Zadik
 const _RPG = JSON.parse(fs.readFileSync('./lib/rpg/inventori.json'))
-const _level = JSON.parse(fs.readFileSync('./lib/rpg/leveluser.json'))
 const _petualang = JSON.parse(fs.readFileSync('./lib/rpg/inventori.json'))
 const _healt = JSON.parse(fs.readFileSync('./lib/rpg/healt.json'))
 const limit = JSON.parse(fs.readFileSync('./limit.json'));
@@ -5393,11 +5392,10 @@ break
 
 case 'aventura':
 addFilter(from)
-          if (isHealt(sender)) return reply('Cura')
-       if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
-   	      if (!isGroup) return reply(mess.only.group)                                                     
+       if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou\nUse: !buylimite`)
+   	                                                        
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)		
-	      ngab = ['Longsor','Letusan Gunung','Tsunami','Gempa Bumi','Meteor','Demon']
+	      ngab = ['Avalanche','Erupção vulcânica','Tsunami','Terremoto','Meteoros','Demônio']
 	      const sesuatu = ngab[Math.floor(Math.random() * ngab.length)]
           const dungeon =['Whetstone','Willow Field','Rodeo','Verdant Blufs','Bull Holland','Fallen Tree','Dellnort','Verona Lush','Leafy Hollow','Chilliad Dome','Garcia','Pine Valley','Santa Florals','Guvero East','Cranbarry','Junever','Aldea Malvada','Green Palms','Green Oasis','Fort Carson','Prickel Pine','Pilson Meadow','Boca Roca','Rocksore East','Camel Toe','Hanky Panky','Fern Ridge','Montgomerry','Flint Yankton','Vespucci','fortress city', 'ravines valley', 'horizon valley', 'cyber city', 'end city', 'templar city', 'pochinki', 'peak','Vertical Zone','Sentainel Country','Night City','Flush City','Royals Canyon','Blackburn','Peterborough','Tarnstead','Jarren’s','Outpost','Landow','Nearon','Kincardine','Aysgarth','Veritas','Openshaw','Bredwardine','Berkton','Wolford','Norwich','Kald','Solaris','Kilead','Pitmerden','Acomb','Eldham','Warcester','Lingmell','Kilead','Cromerth','Wingston','Garmsby','Kingcardine','Perthlochry','Frostford','Hillford','Hardersfield','Tarrin','Holmfirth','Caerleon','Elisyum','Ballaeter','Penshaw','Bradford','Wigston','Accreton','Kameeraska','Ferncombe','Kilerth','Erostey','Carran','Jongvale','Larnwick','Queenstown','Whaelrdrake','Baerney','Wingston','Arkney','Strongfair','Lowestoft','Beggar’s Hole','Shepshed','Perthlochry','Ironforge','Tywardreath','Pontheugh','Foolshope','Hull','Dalmerlington','Aucteraden','Woodpine','Millstone','Windermere','Lancaster','Kirkwall','Rotherhithe','Astrakhan','Watford','Ritherhithe','Krosstoen','Pella’s','Wish','Grimsby','Ayrith','Ampleforth','Skystead','Eanverness','Penshaw','Peatsland','Astrakane','Pontybridge','Caershire','Snowbush','Sutton','Northwich','Hogsfeet','Claethorpes','Sudbury','Cherrytown','Blue Field','Orrinshire','Aempleforth','Garrigill','Jedburgh','Eastbourne','Taedmorden','Venzor','Grasmere','Ubbin','Falls','Violl’s Garden','Glanchester','Bailymena','Arkkukari','Skargness','Cardend','Llanybydder','Faversham','Yellowseed','Carlisle','Cirencester','Aramoor','Furness','Kincardine','Rotherham','Emelle','Boroughton','Carran','Ffestiniog','Mansfield','Huthwaite','Marclesfield','Pavv','Squall’s End','Glenarm','Dragontail','Moressley','Hardersfield','Gilramore','Aria','Ecrin','Clare View Point','Blackburn','Oakheart','Doonatel','Broughton','Carlisle','Murlayfield','Nuxvar']
 	      const ad = dungeon[Math.floor(Math.random() * dungeon.length)]
@@ -5406,8 +5404,8 @@ addFilter(from)
 	      randIndex = Math.floor(Math.random() * jsonData.length);
           randKey = jsonData[randIndex];
 	      hasm = await getBuffer(randKey.result)  
-	      const adven = Math.ceil(Math.random() * 1000)          
-	      const money = Math.ceil(Math.random() * 300)					      	      
+	      const adven = Math.ceil(Math.random() * 50)          
+	      const money = Math.ceil(Math.random() * 30)					      	      
 	      setTimeout( () => {		
           caption = monospace(`「 MORTE 」\n\n • O lugar  ${ad}\n • CASH : ${money}\n • EXP : ${adven}Xp`)
           but = [
@@ -5431,19 +5429,19 @@ addFilter(from)
 
 case 'minerar':   
 addFilter(from)
-   	      if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
-   	      if (!isGroup) return reply(mess.only.group)                                                     
+   	     if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou\nUse: !buylimite`)
+   	                                                           
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
-          pp = randomNomor(75)
-          emas = randomNomor(15)
-          dm = randomNomor(3)
-          besi = randomNomor(50)
+          pp = randomNomor(3)
+          emas = randomNomor(3)
+          dm = randomNomor(2)
+          besi = randomNomor(3)
           done = monospace(`Finalizar Mineração🚧\nlistar resultados :\nOuro : ${emas}🪙\ncash : $${pp}💰\nFerro : ${besi}⛓️\nDiamante : ${dm}💎`)
           addBalance(sender, pp, balance)          
           addBesi(sender, besi)
           addEmas(sender, emas)
           addDm(sender, dm)
-          mining = ('espere está balançando...')
+          mining = ('espere está calibrando...')
 		  setTimeout( () => {		//case by zadik
 		  const but = [{ buttonId: `${prefix}minerar`, buttonText: { displayText: 'Minerar novamente' }, type: 1 }]
           sendButton(from, done, 'Mineração', but)
@@ -5452,7 +5450,7 @@ addFilter(from)
 		  loli.sendMessage(from, '🚧 terminou de escavar. . .🪙👷', text) 
 		  }, 7000) // 1000 = 1s,
 	      setTimeout( () => {
-		  loli.sendMessage(from, '🚧 encontrar ouro. . .⚒️🏔️️️', text) 
+		  loli.sendMessage(from, '🚧 encontrando recursos. . .⚒️🏔️️️', text) 
 		  }, 4000) // 1000 = 1s,
 		  setTimeout( () => {
 		  loli.sendMessage(from, '🚧 iniciar a mineração. . .⚒️🏔️️', text) 
@@ -5460,21 +5458,22 @@ addFilter(from)
 		  setTimeout( () => {
 		  loli.sendMessage(from, mining, text, {quoted: mek}) 
 		  }, 0) // 1000 = 1s,
+                 limitAdd(sender, limit) 
 	      break
 
  case 'pescar':
-          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
-   	      if (!isGroup) return reply(mess.only.group)                                                     
+         if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou\nUse: !buylimite`)
+   	                                                          
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)	
           ikannya = ikan[Math.floor(Math.random() * ikan.length)]
-	      xp = Math.ceil(Math.random() * 350)          
-	      coin = randomNomor(50)	    
-	      ditangkap = Math.ceil(Math.random() * 50)
+	      xp = Math.ceil(Math.random() * 150)          
+	      coin = randomNomor(15)	    
+	      ditangkap = Math.ceil(Math.random() * 10)
 	      cing = await getBuffer(`https://telegra.ph/file/d9b15de4f661808dfd0b9.jpg`)
 	      setTimeout( () => {
 	      caption = monospace(`「 pescaria」\n\n • A pegada : ${ikannya}\n • Ganho total : ${ditangkap} Peixe\n • CASH : ${coin}\n • EXP : ${xp}Xp`)
           but = [
-          { buttonId: '${prefix}pescar', buttonText: { displayText: 'Pescar novamente' }, type: 1 },
+          { buttonId: `${prefix}pescar`, buttonText: { displayText: 'Pescar novamente' }, type: 1 },
           { buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }
            ]
           sendButLocation(from, caption, 'pescaria', cing, but, {quoted: mek})      
@@ -5495,8 +5494,8 @@ addFilter(from)
 	      break
 
  case 'venderpeixe':
-          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
-   	      if (!isGroup) return reply(mess.only.group)                                                     
+         
+   	      if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')                                               
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh =  args.join(" ")
@@ -5509,8 +5508,8 @@ addFilter(from)
           sendButton(from, capti, 'venda', but)          
           break
     case 'venderferro':
-          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
-   	      if (!isGroup) return reply(mess.only.group)                                                     
+        
+   	     if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')                                                       
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh = args.join(" ")
@@ -5523,8 +5522,8 @@ addFilter(from)
           sendButton(from, capti, 'venda', but)                    
           break          
     case 'venderouro':
-          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
-   	      if (!isGroup) return reply(mess.only.group)                                                     
+        
+   	      if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')                                                      
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh = args.join(" ")
@@ -5537,10 +5536,10 @@ addFilter(from)
           sendButton(from, capti, 'venda', but)                    
           break 
     case 'venderdiamante':
-          if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou`) 
-   	      if (!isGroup) return reply(mess.only.group)                                                     
+   	                                                           
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
-          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
+          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)   
+          if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')      
           ttl = args.join(" ")
           var etoo = 75 * ttl
           if (getDm(sender) < ttl) return reply(`Seu ferro não é suficiente`)
@@ -5782,6 +5781,7 @@ loli.sendMessage(from, rpg1,  MessageType.video, {mimetype: 'video/gif', quoted:
  • inventario
  • ranklevel
  • buymoney
+ • buylimite
  
 🛒 𝘃𝗲𝗻𝗱𝗲𝗿 𝗶𝗻𝘃𝗲𝗻𝘁𝗮𝗿𝗶𝗼
  • venderpeixe
@@ -8078,6 +8078,23 @@ case 'buymoney':{
           await reply(`👸COMPRA BEM SUCEDIDA👸\n\nObrigado por comprar\nSaldo Restante do Cash :  $${(getBalance(sender, balance))}\nSeu Dinheiro ${checkATMuser(sender)}💵\n\n*compra bem sucedida com o id :* \n*💳: ${createSerial(15)}* `)
           }
           break 
+
+ case 'buylimite':{
+
+               addFilter(from)
+         if (!isGroup) return reply(mess.only.group)                                                     
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)  
+          if (args.length < 1) return reply(`Envie o pedido *${prefix}buylimite* valor limite que você deseja comprar\n\nPreço 1 limite = $1000 cash`)   
+           if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')   
+          payout = args.join(" ")
+          let ane = 1000 * payout
+          if (getBalance(sender, balance) < ane) return reply(`Seu saldo não é suficiente para esta compra`)
+          kurangBalance(sender, ane, balance)
+          giveLimit(sender, parseInt(args[0]), limit)
+          reply(monospace(`👸COMPRA BEM SUCEDIDA👸\n\nObrigado por comprar\nLimite de compra até ${args[0]} bem-sucedido\n\nSaldo restante :  $${(getBalance(sender, balance))}\n*compra bem sucedida com o id :* \n*💳: ${createSerial(15)}* `))
+          }
+          break 
+
 
 				case 'loja':            				
 				try {
