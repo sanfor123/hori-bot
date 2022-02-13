@@ -5404,12 +5404,11 @@ addFilter(from)
 	      randIndex = Math.floor(Math.random() * jsonData.length);
           randKey = jsonData[randIndex];
 	      hasm = await getBuffer(randKey.result)  
-	      const adven = Math.ceil(Math.random() * 50)          
-	      const money = Math.ceil(Math.random() * 30)					      	      
+	      const adven = Math.ceil(Math.random() * 500)          
+	      const money = Math.ceil(Math.random() * 300)					      	      
 	      setTimeout( () => {		
           caption = monospace(`「 MORTE 」\n\n • O lugar  ${ad}\n • CASH : ${money}\n • EXP : ${adven}Xp`)
-          but = [
-          { buttonId: `${prefix}inventario`, buttonText: { displayText: 'MOCHILA' }, type: 1 }]
+         but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'MOCHILA' }, type: 1 }]
           sendButLocation(from, caption, 'DUNGEON', hasm, but, {quoted: mek})   
           }, 7000)
           setTimeout( () => {
@@ -5432,10 +5431,10 @@ addFilter(from)
    	     if (isLimit(sender, isvipp, isOwner, limitCount, limit)) return reply(`Opa desculpa onii-chan seu limite acabou\nUse: !buylimite`)
    	                                                           
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
-          pp = randomNomor(3)
-          emas = randomNomor(3)
-          dm = randomNomor(2)
-          besi = randomNomor(3)
+          pp = randomNomor(75)
+          emas = randomNomor(15)
+          dm = randomNomor(3)
+          besi = randomNomor(50)
           done = monospace(`Finalizar Mineração🚧\nlistar resultados :\nOuro : ${emas}🪙\ncash : $${pp}💰\nFerro : ${besi}⛓️\nDiamante : ${dm}💎`)
           addBalance(sender, pp, balance)          
           addBesi(sender, besi)
@@ -5466,9 +5465,9 @@ addFilter(from)
    	                                                          
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)	
           ikannya = ikan[Math.floor(Math.random() * ikan.length)]
-	      xp = Math.ceil(Math.random() * 150)          
-	      coin = randomNomor(15)	    
-	      ditangkap = Math.ceil(Math.random() * 10)
+	      xp = Math.ceil(Math.random() * 350)          
+	      coin = randomNomor(50)	    
+	      ditangkap = Math.ceil(Math.random() * 50)
 	      cing = await getBuffer(`https://telegra.ph/file/d9b15de4f661808dfd0b9.jpg`)
 	      setTimeout( () => {
 	      caption = monospace(`「 pescaria」\n\n • A pegada : ${ikannya}\n • Ganho total : ${ditangkap} Peixe\n • CASH : ${coin}\n • EXP : ${xp}Xp`)
@@ -5499,11 +5498,11 @@ addFilter(from)
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh =  args.join(" ")
-          rp = 5 * jmlh
+          rp = 10 * jmlh
           if (getFish(sender) < jmlh) return reply(`Seu peixe não é suficiente`)
           sellFish(sender, jmlh, balance)
           addBalance(sender, rp, balance) 
-          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor : ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Peixe : 5\n • Situação: Sucesso \n • Restos de Peixe : ${getFish(sender)}\n • Resultados de vendas : $${rp}`)
+          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor : ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Peixe : 10\n • Situação: Sucesso \n • Restos de Peixe : ${getFish(sender)}\n • Resultados de vendas : $${rp}`)
           but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
           sendButton(from, capti, 'venda', but)          
           break
@@ -5513,11 +5512,11 @@ addFilter(from)
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh = args.join(" ")
-          rp = 10 * jmlh
+          rp = 20 * jmlh
           if (getBesi(sender) < jmlh) return reply(`Seu ferro não é suficiente`)
           sellBesi(sender, jmlh, balance)
           addBalance(sender, rp, balance) 
-          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor : ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Ferro : 10\n • Situação: Sucesso \n • Restos de Ferro : ${getBesi(sender)}\n • Resultados de vendas : $${rp}`)
+          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor : ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Ferro : 20\n • Situação: Sucesso \n • Restos de Ferro : ${getBesi(sender)}\n • Resultados de vendas : $${rp}`)
           but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
           sendButton(from, capti, 'venda', but)                    
           break          
@@ -5527,11 +5526,11 @@ addFilter(from)
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
           jmlh = args.join(" ")
-          rp = 25 * jmlh
+          rp = 50 * jmlh
           if (getEmas(sender) < jmlh) return reply(`Seu ouro não é suficiente`)
           sellEmas(sender, jmlh, balance)
           addBalance(sender, rp, balance) 
-          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor: ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/ouro : 25\n • Situação: Sucesso \n • Ouro restante : ${getEmas(sender)}\n • Resultados de vendas : $${rp}`)
+          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor: ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/ouro : 50\n • Situação: Sucesso \n • Ouro restante : ${getEmas(sender)}\n • Resultados de vendas : $${rp}`)
           but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
           sendButton(from, capti, 'venda', but)                    
           break 
@@ -5541,11 +5540,11 @@ addFilter(from)
           if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)   
           if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')      
           ttl = args.join(" ")
-          var etoo = 75 * ttl
+          var etoo = 150 * ttl
           if (getDm(sender) < ttl) return reply(`Seu ferro não é suficiente`)
           sellDm(sender, ttl)
           addBalance(sender, etoo, balance) 
-          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor: ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Diamante : 75\n • Situação: Sucesso \n • Diamante restante : ${getDm(sender)}\n • Resultados de vendas : $${etoo}`)
+          capti = monospace(`🛒 𝗺𝗲𝗿𝗰𝗮𝗱𝗼\n • Vendedor: ${pushname}\n • Comprador : 𝗛𝗼𝗿𝗶\n • Preço/Diamante : 150\n • Situação: Sucesso \n • Diamante restante : ${getDm(sender)}\n • Resultados de vendas : $${etoo}`)
           but = [{ buttonId: `${prefix}inventario`, buttonText: { displayText: 'Verificar inventário' }, type: 1 }]
           sendButton(from, capti, 'venda', but)                    
           break       
@@ -8051,6 +8050,7 @@ if (!isGroup) return reply(mess.only.group)
 				case 'buyvip':						
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))//PEDI O REGISTRO
 if (vipp.includes(sender)) return reply("❌ Só pode comprar VIP uma vez! ❌")
+if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')   
     payout2 = 1
 				const koinPerlimit2 = 5000000 //QUANTIDADE DO PREMIUM
 				const total3 = koinPerlimit2 * payout2
@@ -8068,7 +8068,7 @@ if (vipp.includes(sender)) return reply("❌ Só pode comprar VIP uma vez! ❌")
 case 'buymoney':{
                addFilter(from)
          if (!isGroup) return reply(mess.only.group)                                                     
-          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)  
+          if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)   
           payout2 = 1
           const ane = 50000 * payout2
           const nrolxp1 = Number(100000) 
