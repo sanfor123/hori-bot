@@ -5493,10 +5493,10 @@ addFilter(from)
 	      break
 
  case 'venderpeixe':
-         
+         if (args.length !== 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)
    	      if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')                                               
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
-          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
+            
           jmlh =  args.join(" ")
           rp = 10 * jmlh
           if (getFish(sender) < jmlh) return reply(`Seu peixe não é suficiente`)
@@ -5507,10 +5507,10 @@ addFilter(from)
           sendButton(from, capti, 'venda', but)          
           break
     case 'venderferro':
-        
+        if (args.length !== 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)
    	     if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')                                                       
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
-          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
+          
           jmlh = args.join(" ")
           rp = 20 * jmlh
           if (getBesi(sender) < jmlh) return reply(`Seu ferro não é suficiente`)
@@ -5521,10 +5521,10 @@ addFilter(from)
           sendButton(from, capti, 'venda', but)                    
           break          
     case 'venderouro':
-        
+        if (args.length !== 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)
    	      if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')                                                      
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
-          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)      
+             
           jmlh = args.join(" ")
           rp = 50 * jmlh
           if (getEmas(sender) < jmlh) return reply(`Seu ouro não é suficiente`)
@@ -5537,7 +5537,8 @@ addFilter(from)
     case 'venderdiamante':
    	                                                           
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)
-          if (args.length < 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)   
+         if (args.length !== 1) return reply(`Enviar pedidos *${prefix + command}* quantidade que deseja vender`)
+
           if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')      
           ttl = args.join(" ")
           var etoo = 150 * ttl
