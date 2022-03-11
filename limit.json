@@ -545,7 +545,7 @@
   },
   {
     "id": "5511960887195@s.whatsapp.net",
-    "limit": -964
+    "limit": -962
   },
   {
     "id": "558899961655@s.whatsapp.net",
@@ -581,7 +581,7 @@
   },
   {
     "id": "555194212188@s.whatsapp.net",
-    "limit": 6
+    "limit": 13
   },
   {
     "id": "556697127484@s.whatsapp.net",
@@ -669,7 +669,7 @@
   },
   {
     "id": "554192783343@s.whatsapp.net",
-    "limit": 11
+    "limit": 12
   },
   {
     "id": "559984235117@s.whatsapp.net",
@@ -765,7 +765,7 @@
   },
   {
     "id": "5511954105548@s.whatsapp.net",
-    "limit": 6
+    "limit": 11
   },
   {
     "id": "5517996809601@s.whatsapp.net",
@@ -817,7 +817,7 @@
   },
   {
     "id": "554899514019@s.whatsapp.net",
-    "limit": 12
+    "limit": 13
   },
   {
     "id": "558681108905@s.whatsapp.net",
@@ -1213,7 +1213,7 @@
   },
   {
     "id": "553299772839@s.whatsapp.net",
-    "limit": 12
+    "limit": 13
   },
   {
     "id": "557399976637@s.whatsapp.net",
@@ -1321,7 +1321,7 @@
   },
   {
     "id": "555499740148@s.whatsapp.net",
-    "limit": 3
+    "limit": 5
   },
   {
     "id": "558386682070@s.whatsapp.net",
@@ -1521,7 +1521,7 @@
   },
   {
     "id": "5517997441158@s.whatsapp.net",
-    "limit": 12
+    "limit": 13
   },
   {
     "id": "5511978852367@s.whatsapp.net",
@@ -1717,7 +1717,7 @@
   },
   {
     "id": "558391018129@s.whatsapp.net",
-    "limit": 11
+    "limit": 15
   },
   {
     "id": "553198482007@s.whatsapp.net",
@@ -1737,7 +1737,7 @@
   },
   {
     "id": "554198907698@s.whatsapp.net",
-    "limit": 8
+    "limit": 11
   },
   {
     "id": "553285140144@s.whatsapp.net",
@@ -1761,14 +1761,30 @@
   },
   {
     "id": "5521982613254@s.whatsapp.net",
-    "limit": 15
+    "limit": 16
   },
   {
     "id": "556484265952@s.whatsapp.net",
-    "limit": 12
+    "limit": 14
   },
   {
     "id": "559982791584@s.whatsapp.net",
     "limit": 1
+  },
+  {
+    "id": "5511989617595@s.whatsapp.net",
+    "limit": 0
+  },
+  {
+    "id": "5513981332608@s.whatsapp.net",
+    "limit": 3
+  },
+  {
+    "id": "553183730206@s.whatsapp.net",
+    "limit": 2
+  },
+  {
+    "id": "5513991302523@s.whatsapp.net",
+    "limit": 0
   }
 ]

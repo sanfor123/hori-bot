@@ -1733,6 +1733,8 @@ tobiplays: `⏳Comando ${command} aguarde alguns instantes...⏳\n\nA sua músic
 tobiattp: 'Aguarde nii-san😊\n\nCaso não funcione, use o comando novamente.️',
 tobianime: `Ohayo Oni-chan, Comando ${command} Vai demorar alguns segundos...`,
 tobirply: `[❗] Comando ${command} ja esta ativado!`,
+tobireplayoff: `[❌] Comando ${command} desativado com sucesso!`,
+tobireplay: `[❗] Comando ${command} ativado com sucesso!`,
 group: '[❗] Este comando só pode ser usado em grupos! ❌',
 player: `Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`,
 					premium: `[❗] ESTE PEDIDO É SO PARA *USUÁRIOS VIP*`,
@@ -1743,8 +1745,6 @@ player: `Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser 
 					userB: `──「 LISTA 」──\nOlá Kak !\nDesculpe, irmã. Você não está registrado como amigo de Hori. Registre-se para fazer amizade com a bot Hori`,
 					admin: `[❗] Este comando só pode ser usado por administradores de grupo! ❌`,
 					Badmin: `[❗] Este comando só pode ser usado quando o bot se torna administrador! ❌`,
-tobireplayoff: `[❌] Comando ${command} desativado com sucesso!`,
-tobireplay: `[❗] Comando ${command} ativado com sucesso!`,
 tobantilink: `Eae onii-chan, E esse link aí?🧐`,
             tobizinhoB: `
 ╭⊷╾╾╾╾╾⊷╾╾╾╾╾⊷╾╾╾⊷╾
