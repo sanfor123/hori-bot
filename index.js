@@ -6545,60 +6545,43 @@ case 'autoreply':
 					addFilter(from)
 					if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 					loli.updatePresence(from, Presence.composing)
-                    tod = await getBuffer(`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3ZzIMqwKi5DtBu8u7aCmV6Ra585_hdvx_1noOMsBPYMup-OPWSDUZ908S&s=10`)
-                    loli.sendMessage(from, tod, image, {quoted: say1, thumbnail:null, caption: `_*BEM VINDO AO ${groupName}*_
+                    tod = await getBuffer(`https://i.imgur.com/60xDBJ0.jpg`)
+                    loli.sendMessage(from, tod, image, {quoted: say1, thumbnail:null, caption: `Leia atentamente nossas Regras❗
 
-DIVIRTA-SE, *DENTRO DAS NOSSAS LEIS* 🦘
+Proibido:
 
-existem 3 tipos de regras, vou dar uma explicada nelas
+❌Qualquer tipo de conteúdo Pornográfico sem ser no horário NSFW
+❌Travas 
+❌Links (Nosso Bot não permite por motivos de segurança)
+❌Gore ou coisas Bizarras
+❌Flood/Spam 
+❌Preconceito ou qualquer tipo de ofensa pessoal grave
+❌Invadir privado (Caso seja invadido reporte aos admins com print)
+❌Qualquer tipo de divulgação sem liberação dos admins
 
-❎ regras verdes, penalidades menores, você tomará avisos ou até mesmo banimento temporário
-❌ *regras vermelhas, penalidades médias, são regras bem específicas com direito a ban permanente*
-✡️ _regras roxas, são penalidades especiais, meio q essas dependem do humor do adm, ele decidirá sua punição, então é melhor ter cuidado_
+Horários NSFW, preste muita atenção aqui❗
 
-▬▬▬▬▬▬▬▬▬▬୧✬҉୨▬▬▬▬▬▬▬▬▬▬
+A partir de 23:00 alguns comandos NSFW do Bot estarão liberados e provavelmente ficarão ativos até umas 6:00 da manhã
 
-_*AGORA VAMOS PARA AS REGRAS!*_
+Não sabe o que são conteúdos NSFW❔
 
-▬▬▬▬▬✅REGRAS VERDES✅▬▬▬▬▬▬
+São conteúdos adultos ou seja para maior de idade🔞, óbvio que vocês de menor terão acesso também, mas não é o indicado
 
-❌gadiar (a menos q seja mútuo e que não transforme o grupo num Tinder)
-❌flood/corrente (figu max 6)
-❌tretar (so com autorização dos adm)
-❌encher o saco dos membros, aq é pra ser legal porra
-❌pedir conteúdo
+Naquele período serão liberados conteúdos como:
 
-▬▬▬▬🚫REGRAS VERMELHAS🚫▬▬▬▬▬
-❌link
-❌travas
-❌reclamar dos conteúdos (todos estão explicados a baixo, não queremos reclamações)
-❌qualquer preconceito, aq é uma zona neutra na internet, sem preconceito ou associações
-❌invadir pv
-❌qualquer tipo de divulgação
+✅Hentai
+✅Cosplay NSFW
 
-▬▬▬▬▬✡️REGRAS ROXAS✡️▬▬▬▬▬▬
-❌questionar as regras (isso é uma ditadura) 
-❌mandar áudio gritando ou estourado (áudios externos, não gravados com seu microfone, é até tolerável)
+❗Atenção❗
 
-só pra deixarmos claro, todos vamos listar todos os conteúdos aqui:
+Se você não gosta ou não quer ver esse tipo de coisa no dia a dia, aconselho a você desativar o download automático do seu Whatsapp que está em configurações do seu aplicativo❗
 
-fotos, gifs e vídeos: 
-✔️hentai
-✔️loli (dependendo da aparência, será obrigatório apagar)
-✔️cosplay de anime (lembrando que cosplay é pornografia comum, porém com intenção de parecer hentai/fantasias comuns não são cosplays de anime)
-❌nudes
-❌pornografia comum
-❌cp 
-❌gore
-❌scat
-❌toodlercoon
+Desse modo você não correrá o perigo de ter uma bunda estampada na sua galeria logo de manhã😍
 
-figurinhas:
-✔️hentai
-❌pornografia comum (pode bunda e peito real, nada de genitais)
+É isso, qualquer dúvida ou sugestão procure falar com um Admin💋
 
- ⭐👸Rҽɠɾαʂ ԃσ ɠɾυρσ👸⭐`})
- break
+🌙 Moderação Henplay 🌙`})
+break
 				case 'admins':
 					if (!isGroup) return reply(mess.only.group)
 					teks = `Lista de admins do grupo *${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
