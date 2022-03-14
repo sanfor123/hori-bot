@@ -6301,8 +6301,7 @@ if (!isGroup) return reply(mess.only.group)
             break
 				case 'buyvip':						
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))//PEDI O REGISTRO
-if (vipp.includes(sender)) return reply("❌ Só pode comprar VIP uma vez! ❌")
-if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')   
+if (vipp.includes(sender)) return reply("❌ Só pode comprar VIP uma vez! ❌") 
     payout2 = 1
 				const koinPerlimit2 = 5000000 //QUANTIDADE DO PREMIUM
 				const total3 = koinPerlimit2 * payout2
