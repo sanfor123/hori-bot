@@ -1721,20 +1721,18 @@ const getGroup = async function(totalchat){
 
 mess = {
 wait: '𝘼𝙜𝙪𝙖𝙧𝙙𝙚 𝙤𝙣𝙞𝙞-𝙘𝙝𝙖𝙣😘',
-levelnoton: 'TESTE TESTE',
-levelnol: 'TESTE TESTE',
+tobireplayoff: `[❌] Comando ${command} desativado com sucesso!`,
 error: {
 stick: '[❗] Falha, ocorreu um erro ao converter a imagem em um adesivo ❌',
 Iv: '❌ Link inválido ❌',
 limit: `Opa desculpa onii-chan seu limite acabou`,
 only: {
 tobiowber: `Esse comando só pode ser usado por ${SeuNome}`,
+tobirply: `[❗] Comando ${command} ja esta ativado!`,
+tobireplay: `[❗] Comando ${command} ativado com sucesso!`,
 tobiplays: `⏳Comando ${command} aguarde alguns instantes...⏳\n\nA sua música será enviada em até 2 minutos\nCaso não envie, tente especificar o nome da música.`,
 tobiattp: 'Aguarde nii-san😊\n\nCaso não funcione, use o comando novamente.️',
 tobianime: `Ohayo Oni-chan, Comando ${command} Vai demorar alguns segundos...`,
-tobirply: `[❗] Comando ${command} ja esta ativado!`,
-tobireplayoff: `[❌] Comando ${command} desativado com sucesso!`,
-tobireplay: `[❗] Comando ${command} ativado com sucesso!`,
 group: '[❗] Este comando só pode ser usado em grupos! ❌',
 player: `Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`,
 					premium: `[❗] ESTE PEDIDO É SO PARA *USUÁRIOS VIP*`,
@@ -11216,7 +11214,7 @@ let position = welcome.indexOf(welcome.find((x) => x === from))
 if (position === -1) return reply(`${command} não estava ativo antes`)
 welcome.splice(position, 1)
 fs.writeFileSync('./arquivos/welcome.json', JSON.stringify(welcome))
-reply(mess.only.tobireplayoff)
+reply(mess.tobireplayoff)
 } else {
 reply(`[❗]ativar/desativar, Exemplo ${prefix}${command} ativar`)
 }
@@ -11236,7 +11234,7 @@ reply(mess.only.tobireplay)
 } else if (args[0] === 'desativar') {
 antitexto.splice(from, 1)
 fs.writeFileSync('./arquivos/antitexto.json', JSON.stringify(antitexto))
-reply(mess.only.tobireplayoff)
+reply(mess.tobireplayoff)
 } else {
 reply(`[❗]ativar/desativar, Exemplo ${prefix}${command} ativar`)
 }
@@ -16125,7 +16123,7 @@ let position = antilink.indexOf(antilink.find((x) => x === from))
 if (position === -1) return reply(`${command} não estava ativo antes`)
 antilink.splice(position, 1)
 fs.writeFileSync('./arquivos/antilink.json', JSON.stringify(antilink))
-reply(mess.only.tobireplayoff)
+reply(mess.tobireplayoff)
 } else {
 reply(`[❗]ativar/desativar, Exemplo ${prefix}${command} ativar`)
 }
@@ -16146,7 +16144,7 @@ reply('Agora quem manda qualquer contato vai ser removido do grupo')
 } else if (args[0] === 'desativar') {
 antictt.splice(from, 1)
 fs.writeFileSync('./arquivos/antictt.json', JSON.stringify(antictt))
-reply(mess.only.tobireplayoff)
+reply(mess.tobireplayoff)
 } else {
 reply(`[❗]ativar/desativar, Exemplo ${prefix}${command} ativar`)
 }
@@ -16168,7 +16166,7 @@ let position = autofigu.indexOf(autofigu.find((x) => x === from))
 if (position === -1) return reply(`${command} não estava ativo antes`)
 autofigu.splice(position, 1)
 fs.writeFileSync('./arquivos/autofigu.json', JSON.stringify(autofigu))
-reply(mess.only.tobireplayoff)
+reply(mess.tobireplayoff)
 } else {
 reply(`[❗]ativar/desativar, Exemplo ${prefix}${command} ativar`)
 }
@@ -16191,7 +16189,7 @@ let position = _leveling.indexOf(_leveling.find((x) => x === from))
 if (position === -1) return reply(`${command} não estava ativo antes`)
 _leveling.splice(position, 1)
 fs.writeFileSync('./arquivos/leveling.json', JSON.stringify(_leveling))
-reply(mess.only.tobireplayoff)
+reply(mess.tobireplayoff)
 } else {
 reply(`[❗]ativar/desativar, Exemplo ${prefix}${command} ativar`)
 }
@@ -16211,7 +16209,7 @@ reply(mess.only.tobireplay)
 } else if (args[0] === 'desativar') {
 antiteste.splice(from, 1)
 fs.writeFileSync('./arquivos/antiteste.json', JSON.stringify(antiteste))
-reply(mess.only.tobireplayoff)
+reply(mess.tobireplayoff)
 } else {
 reply(`[❗]ativar/desativar, Exemplo ${prefix}${command} ativar`)
 }
