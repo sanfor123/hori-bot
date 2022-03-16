@@ -4546,6 +4546,7 @@ break
 					         addFilter(from)
 					if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 						if(!isGroup) return reply('comando apenas para grupos')
+                     if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('USE DE FORMA CORRETA OU IRA LEVAR BANIMENTO')
                     if (fs.existsSync(`./lib/tictactoe/db/${from}.json`)) {
                          const boardnow = setGame(`${from}`);
                          const matrix = boardnow._matrix;
