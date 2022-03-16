@@ -34,14 +34,14 @@
 <summary>Para quem nunca usou o Termux:
 
 ```bash
-> termux-setup-storage && pkg install git -y && git clone https://github.com/zadik-hacker/hori-bot.git && cd hori-bot && bash install.sh && npm start
+> termux-setup-storage && pkg install git -y && git clone https://github.com/zadik-hacker/hori-bot.git && cd hori-bot && npm start
 
 ```
 
 <summary>Para quem já usa o Termux ou já usou algum bot:
 
 ```bash
-> git clone https://github.com/zadik-hacker/hori-bot.git && cd hori-bot && bash install.sh && npm start
+> git clone https://github.com/zadik-hacker/hori-bot.git && cd hori-bot && npm start
 ```
 
 <summary>Se vocé já usou o bot alguma vez use apenas:
