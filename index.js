@@ -52,9 +52,9 @@ try = Implementa o tratamento de erros em um bloco de declarações
 
 //_*CASES PARA COLOCA DPS:
 case 'promoteall':
-if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
-if (!isGroup) return reply(mess.only.group)
-if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (!isOwner && !mek.key.fromMe) return reply(mess.ownerB)
+if (!isGroup) return reply(mess.group)
+if (!isBotGroupAdmins) return reply(mess.Badmin)
 members_id = []
 for (let mem of groupMembers) {
 members_id.push(mem.jid)
@@ -1327,7 +1327,7 @@ const isAutofigu = isGroup ? autofigu.includes(from) : true //Auto figurinhas
 const isWelcome = isGroup ? welcome.includes(from) : true //Welcome
 const isAutoReply = isGroup ? autoreply.includes(from) : true
 const isAntiCatalogo = isGroup ? anticatalogo.includes(from) : true
-const isNsfw = isGroup ? nsfw.includes(from) : false
+const isNsfw = isGroup ? nsfw.includes(from) : true
 const OriginalOwner = '5521971702453'
 const isAntiPv = (antipv.indexOf('Ativado') >= 0) ? true : false
 const isAntiLoc = isGroup ? antiloc.includes(from) : true
@@ -1718,50 +1718,24 @@ const getGroup = async function(totalchat){
 	}
 	return grup
 }
-
 mess = {
 wait: '𝘼𝙜𝙪𝙖𝙧𝙙𝙚 𝙤𝙣𝙞𝙞-𝙘𝙝𝙖𝙣😘',
 tobireplayoff: `[❌] Comando ${command} desativado com sucesso!`,
+tobirply: `[❗] Comando ${command} ja esta ativado!`,
+tobireplay: `[❗] Comando ${command} ativado com sucesso!`,
+tobiattp: 'Aguarde nii-san😊\n\nCaso não funcione, use o comando novamente.️',
+group: '[❗] Este comando só pode ser usado em grupos! ❌',
+player: `Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`,
+					premium: `[❗] ESTE PEDIDO É SO PARA *USUÁRIOS VIP*`,
+					ownerB: `[❗] Proprietário? Este é um recurso especial para o proprietário do bot ❌`,
+					admin: `[❗] Este comando só pode ser usado por administradores de grupo! ❌`,
+					Badmin: `[❗] Este comando só pode ser usado quando o bot se torna administrador! ❌`,
+tobantilink: `Eae onii-chan, E esse link aí?🧐`,
 error: {
 stick: '[❗] Falha, ocorreu um erro ao converter a imagem em um adesivo ❌',
 Iv: '❌ Link inválido ❌',
 limit: `Opa desculpa onii-chan seu limite acabou`,
 only: {
-tobiowber: `Esse comando só pode ser usado por ${SeuNome}`,
-tobirply: `[❗] Comando ${command} ja esta ativado!`,
-tobireplay: `[❗] Comando ${command} ativado com sucesso!`,
-tobiplays: `⏳Comando ${command} aguarde alguns instantes...⏳\n\nA sua música será enviada em até 2 minutos\nCaso não envie, tente especificar o nome da música.`,
-tobiattp: 'Aguarde nii-san😊\n\nCaso não funcione, use o comando novamente.️',
-tobianime: `Ohayo Oni-chan, Comando ${command} Vai demorar alguns segundos...`,
-group: '[❗] Este comando só pode ser usado em grupos! ❌',
-player: `Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`,
-					premium: `[❗] ESTE PEDIDO É SO PARA *USUÁRIOS VIP*`,
-					mod: `[❗] ESTE PEDIDO É ESPECÍFICO PARA USUARIO MOD HORI BOT*`,
-					benned: `Você para a banda, por favor, contate o proprietário para abrir sua banda`,
-					ownerG: `[❗] Proprietário? Este é um recurso especial para o proprietário do bot ❌`,
-					ownerB: `[❗] Proprietário? Este é um recurso especial para o proprietário do bot ❌`,
-					userB: `──「 LISTA 」──\nOlá Kak !\nDesculpe, irmã. Você não está registrado como amigo de Hori. Registre-se para fazer amizade com a bot Hori`,
-					admin: `[❗] Este comando só pode ser usado por administradores de grupo! ❌`,
-					Badmin: `[❗] Este comando só pode ser usado quando o bot se torna administrador! ❌`,
-tobantilink: `Eae onii-chan, E esse link aí?🧐`,
-            tobizinhoB: `
-╭⊷╾╾╾╾╾⊷╾╾╾╾╾⊷╾╾╾⊷╾
-┃⋆╭╾╾╾⟨ 🍥 REGISTRE-SE 🍥 ⟩
-┃⋆│❍ Olá corno(a)!
-┃⋆│❍ Você não está registrado no bot
-┃⋆│
-┃⋆│❍ Use: ${prefix}registrar Nome|idade
-┃⋆│❍ Exemplo : ${prefix}registrar ${SeuNome}|18
-┃⋆│
-┃⋆│❍ Ou ${prefix}registrar ${pushname}|18
-┃⋆│
-┃⋆│❍ Usa seu nome, ou nick
-┃⋆│❍ Sua idade real, ou fake
-┃⋆│
-┃⋆│❍ Caso queira ajuda:
-┃⋆│❍ http://Wa.me/${SeuNumero}
-┃⋆╰─────────────────
-╚⊷╾╾╾╾╾⊷╾╾╾╾╾⊷╾╾╾⊷⊷`,
 }
 }
 }
@@ -2389,7 +2363,7 @@ loli.groupRemove(from, [kic])
 if (budy.includes("https")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2397,7 +2371,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("://chat.whatsapp.com/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2405,7 +2379,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("://instagram.com/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2413,7 +2387,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("https://")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2421,7 +2395,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("Https://")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2429,7 +2403,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("http:/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2437,7 +2411,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("https:/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2445,7 +2419,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("https://t.me/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2453,7 +2427,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("https://onlyfans.com")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2461,7 +2435,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("onlyfans.com")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2469,7 +2443,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("youtube.com/watch?")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2477,7 +2451,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("https://wa.me/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2485,7 +2459,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("*TED ou PIX*")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2493,14 +2467,14 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("https://vm.tiktok.com/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
 if (budy.includes("https://s.kwai.app/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2508,7 +2482,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("chat.whatsapp.com/")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2516,7 +2490,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("://youtube.com/channel")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2524,7 +2498,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("venda cp")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2532,7 +2506,7 @@ kic = `${sender.split("@")[0]}@s.whatsapp.net`
 if (budy.includes("chilldren porn")){
 if (!isGroup) return
 if (!isAntiLink) return
-if (isGroupAdmins) return reply(mess.only.tobantilink)
+if (isGroupAdmins) return reply(mess.tobantilink)
 kic = `${sender.split("@")[0]}@s.whatsapp.net`
 				loli.groupRemove(from, [kic])
 			}
@@ -2734,7 +2708,7 @@ const checkHealt = (sender) => {
                             const healthCounts = healtawal - lmt.healt
                             if (healthCounts <= 0) return loli.sendMessage(from,`Sua solicitação de limite se esgotou\n\n_Observação: o limite será redefinido a cada 21:00!_`, text,{ quoted: mek})
                           //  loli.sendMessage(from, `${healthCounts}`, text, { quoted : mek})
-                           if (!isPetualang) return reply(mess.only.player)
+                           if (!isPetualang) return reply(mess.player)
  reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 pp = monospace(`📍 𝗽𝗲𝗿𝗳𝗶𝗹 𝗮𝘃𝗲𝗻𝘁𝘂𝗿𝗲𝗶𝗿𝗼
  • Nome : ${pushname}
@@ -4610,7 +4584,7 @@ break
                       case  'resetavelha':
                       addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isGroupAdmins) return reply(mess.admin)
                     if (fs.existsSync("./lib/tictactoe/db/" + from + ".json")) {
                          fs.unlinkSync("./lib/tictactoe/db/" + from + ".json");
                          reply(`Jogo da velha resetado com sucesso nesse grupo!`);
@@ -5118,7 +5092,7 @@ case 'attp': //@Tobi
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (args.length < 1) return reply(`Use dessa forma:\nComando: ${prefix}attp ${SeuNome} gado`)
-reply(mess.only.tobiattp)
+reply(mess.tobiattp)
 attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${encodeURIComponent(body.slice(5))}`)
 loli.sendMessage(from, attp2, sticker, {quoted: say1})
 break
@@ -5128,7 +5102,7 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
 if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}attp ${SeuNome} gado*`)
 teks = body.slice(6)
-reply(mess.only.tobiattp)
+reply(mess.tobiattp)
 url = encodeURI(`http://brizas-api.herokuapp.com/ttp/attp1?apikey=BOT SOPHIA&text=${teks}`)
 send = await getBuffer(url)
 loli.sendMessage(from, send, sticker, {quoted: say1})
@@ -5139,7 +5113,7 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
 if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}attp ${SeuNome} gado*`)                                
 teks = body.slice(6)
-reply(mess.only.tobiattp)
+reply(mess.tobiattp)
 url = encodeURI(`http://brizas-api.herokuapp.com/ttp/attp2?apikey=BOT SOPHIA&text=${teks}`)
 send = await getBuffer(url)
 loli.sendMessage(from, send, sticker, {quoted: say1})
@@ -5150,7 +5124,7 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
 if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}attp ${SeuNome} gado*`)
 teks = body.slice(6)
-reply(mess.only.tobiattp)
+reply(mess.tobiattp)
 url = encodeURI(`http://brizas-api.herokuapp.com/ttp/attp3?apikey=BOT SOPHIA&text=${teks}`)
 send = await getBuffer(url)
 loli.sendMessage(from, send, sticker, {quoted: say1})
@@ -5161,7 +5135,7 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
 if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}attp ${SeuNome} gado*`)
 teks = body.slice(6)
-reply(mess.only.tobiattp)
+reply(mess.tobiattp)
 url = encodeURI(`http://brizas-api.herokuapp.com/ttp/attp4?apikey=BOT SOPHIA&text=${teks}`)
 send = await getBuffer(url)
 loli.sendMessage(from, send, sticker, {quoted: say1})
@@ -5172,7 +5146,7 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
 if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}attp ${SeuNome} gado*`)
 teks = body.slice(6)
-reply(mess.only.tobiattp)
+reply(mess.tobiattp)
 url = encodeURI(`http://brizas-api.herokuapp.com/ttp/attp5?apikey=BOT SOPHIA&text=${teks}`)
 send = await getBuffer(url)
 loli.sendMessage(from, send, sticker, {quoted: say1})
@@ -5183,7 +5157,7 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
 if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}attp ${SeuNome} gado*`)
 teks = body.slice(6)
-reply(mess.only.tobiattp)
+reply(mess.tobiattp)
 url = encodeURI(`http://brizas-api.herokuapp.com/ttp/attp6?apikey=BOT SOPHIA&text=${teks}`)
 send = await getBuffer(url)
 loli.sendMessage(from, send, sticker, {quoted: say1})
@@ -5345,7 +5319,7 @@ addFilter(from)
 
 case 'quest':
  addFilter(from)
- if (!isPetualang) return reply(mess.only.player)
+ if (!isPetualang) return reply(mess.player)
  listMsg = {
  buttonText: 'LISTA DE MISSÃO',
  footerText: `Copyright © zadik/Hori-BOT \n\MES📅: ${bulan1} \n\HORA⏰: ${hr} \n\DIA☀️: ${hari}`,
@@ -5729,7 +5703,7 @@ reply(`き⃟💰_Adquirir o saldo na conta do ${feijoada}_💰️⃟ き\n\nき
 break
 
 case 'rankativo':
-					if (!isGroup) return reply(mess.only.group)
+					if (!isGroup) return reply(mess.group)
 					if(groupIdscount.indexOf(from) < 0) return reply('*O bot não tem ainda dados sobre o grupo*')
 					var ind = groupIdscount.indexOf(from)
 					if(countMessage[ind].numbers.length < 15) return reply('*Necessita do registro mínimo de 15 usuarios*')
@@ -5790,8 +5764,8 @@ loli.sendMessage(from, rpg1,  MessageType.video, {mimetype: 'video/gif', quoted:
 break
 
 case 'checkativo':
-					if (!isGroup) return reply(mess.only.group)
-                                        if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isGroup) return reply(mess.group)
+                                        if (!isGroupAdmins) return reply(mess.admin)
 					if(groupIdscount.indexOf(from) < 0) return reply('*O bot não tem ainda dados sobre o grupo*')
 					var ind = groupIdscount.indexOf(from)
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*Marque o número que deseja puxar a atividade*')
@@ -5805,8 +5779,8 @@ case 'checkativo':
 					}
 					break
 case 'filtroativo':
-					if(!isGroupAdmins) return reply(mess.only.admin)
-					if(!isGroup) return reply(mess.only.group)
+					if(!isGroupAdmins) return reply(mess.admin)
+					if(!isGroup) return reply(mess.group)
 					teks = `*Membros que só mandaram ${args[0]} mensagens:*\n`
 					mem = []
 					if(groupIdscount.indexOf(from) < 0) return reply('*O bot não tem ainda dados sobre o grupo*')
@@ -5831,7 +5805,7 @@ case 'filtroativo':
 
 case 'atividade':
 					try{
-						if(!isGroupAdmins) return reply(mess.only.admin)
+						if(!isGroupAdmins) return reply(mess.admin)
 						if(isGroup && groupIdscount.indexOf(from) >= 0) {
 							var ind = groupIdscount.indexOf(from)
 							teks = `*Atividade dos membros do grupo:*\n`
@@ -5853,8 +5827,8 @@ case 'atividade':
 					break
 case 'permaban':
                                         if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-					if (!isGroup) return reply(mess.only.admin)
-					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isGroup) return reply(mess.admin)
+					if (!isGroupAdmins) return reply(mess.admin)
 					if (args.length < 1) return reply('Hmmmm')
 					if (Number(args[0]) === 1) {
 						var ind = dbids.indexOf(from)
@@ -5889,8 +5863,8 @@ case 'permaban':
 				break
 case 'permabanadd':
                                         if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-					if (!isGroup) return reply(mess.only.admin)
-					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isGroup) return reply(mess.admin)
+					if (!isGroupAdmins) return reply(mess.admin)
 					if (args.length < 1) return reply('Diga o numero sem espaço, + ou traço')
 					if (isNaN(args[0])) return reply('Diga o numero sem espaço, + ou traço')
 					var ind = dbids.indexOf(from)
@@ -5911,8 +5885,8 @@ case 'permabanadd':
 				break
 case 'permabanrm':
                                         if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-					if (!isGroup) return reply(mess.only.admin)
-					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isGroup) return reply(mess.admin)
+					if (!isGroupAdmins) return reply(mess.admin)
 					if (args.length < 1) return reply('Diga o numero sem espaço, + ou traço')
 					if (isNaN(args[0])) return reply('Diga o numero sem espaço, + ou traço')
 					var ind = dbids.indexOf(from)
@@ -5925,8 +5899,8 @@ case 'permabanrm':
 				break
 case 'permabanlist':
                                         if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-					if (!isGroup) return reply(mess.only.admin)
-					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isGroup) return reply(mess.admin)
+					if (!isGroupAdmins) return reply(mess.admin)
 					var ind = dbids.indexOf(from)
 					if(!isDontBack) return reply('*Nenhum Número não foi adicionado*')
 					teks = '*Números que vou moer na porrada se voltar 😡:*\n'
@@ -6144,9 +6118,9 @@ break
 case 'anticatalogo':
 case 'catálogo':
 case 'catalogo':
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (!isGroup) return reply(mess.group)
+if (!isGroupAdmins) return reply(mess.admin)
+if (!isBotGroupAdmins) return reply(mess.Badmin)
 if (args.length < 1) return reply('Hmmmm')
 if (Number(args[0]) === 1) {
 if (isAntiCatalogo) return reply('Já está ativo!')
@@ -6248,8 +6222,8 @@ break
 				case 'tagimg':
 				if (!isRegistered) return reply(ptbr.rg(prefix, pushname))//PEDI O REGISTRO
 				if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isGroup) return reply(mess.group)
+if (!isGroupAdmins) return reply(mess.admin)
                     if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                         const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
                         filePath = await loli.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
@@ -6274,9 +6248,9 @@ if (!isGroupAdmins) return reply(mess.only.admin)
                     case 'tagsticker':
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))//PEDI O REGISTRO
 if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
-if (!isGroup) return reply(mess.only.group)
-					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (!isvipp) return reply(mess.only.premium)
+if (!isGroup) return reply(mess.group)
+					if (!isGroupAdmins) return reply(mess.admin)
+					if (!isvipp) return reply(mess.premium)
             if ((isMedia && !mek.message.videoMessage || isQuotedSticker) && args.length == 0) {
             encmedia = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
             file = await loli.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
@@ -6317,7 +6291,7 @@ if (vipp.includes(sender)) return reply("❌ Só pode comprar VIP uma vez! ❌")
 
 case 'buymoney':{
                addFilter(from)
-         if (!isGroup) return reply(mess.only.group)                                                     
+         if (!isGroup) return reply(mess.group)                                                     
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)   
           payout2 = 1
           const ane = 50000 * payout2
@@ -6332,7 +6306,7 @@ case 'buymoney':{
  case 'buylimite':{
 
                addFilter(from)
-         if (!isGroup) return reply(mess.only.group)                                                     
+         if (!isGroup) return reply(mess.group)                                                     
           if (!isPetualang) return reply(`Desculpe onii-chan parece que você não é um aventureiro!!\nPara ser um aventureiro digite :\n${prefix}joinrpg`)  
           if (args.length < 1) return reply(`Envie o pedido *${prefix}buylimite* valor limite que você deseja comprar\n\nPreço 1 limite = $1000 cash\n\nExemplo: *${prefix}buylimite* 1`)   
          if (isNaN(args[0])) return reply('CUIDADO USE DA FORMA CORRETA OU PODE PERDER TODA A QUANTIA')   
@@ -6430,8 +6404,8 @@ break
 case 'autoreply':
 					try {
 						 addFilter(from)
-						if (!isGroup) return reply(mess.only.group)
-						if (!isGroupAdmins) return reply(mess.only.admin)
+						if (!isGroup) return reply(mess.group)
+						if (!isGroupAdmins) return reply(mess.admin)
 						if (args.length < 1) return reply('Hmmmm')
 						if (Number(args[0]) === 1) {
 							if (isAutoReply) return reply('Ja esta ativo')
@@ -6451,9 +6425,9 @@ case 'autoreply':
 					break
 					case 'antiloc':
 					try {
-						if (!isGroup) return reply(mess.only.group)
-						if (!isGroupAdmins) return reply(mess.only.admin)
-						if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+						if (!isGroup) return reply(mess.group)
+						if (!isGroupAdmins) return reply(mess.admin)
+						if (!isBotGroupAdmins) return reply(mess.Badmin)
 						if (args.length < 1) return reply('Hmmmm')
 						if (Number(args[0]) === 1) {
 							if (isAntiLoc) return reply('Ja esta ativo')
@@ -6473,9 +6447,9 @@ case 'autoreply':
 					break
 					case 'antidoc':
 					try {
-						if (!isGroup) return reply(mess.only.group)
-						if (!isGroupAdmins) return reply(mess.only.admin)
-						if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+						if (!isGroup) return reply(mess.group)
+						if (!isGroupAdmins) return reply(mess.admin)
+						if (!isBotGroupAdmins) return reply(mess.Badmin)
 						if (args.length < 1) return reply('Hmmmm')
 						if (Number(args[0]) === 1) {
 							if (isAntiDoc) return reply('Ja esta ativo')
@@ -6495,8 +6469,8 @@ case 'autoreply':
 					break
 					case 'katana':  
 					if (!isOwner) return  reply('sai fedido, apenas o zadik tem esse poder')
-                                        if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if(!isGroup) return reply(mess.only.group)
+                                        if (!isBotGroupAdmins) return reply(mess.Badmin)
+					if(!isGroup) return reply(mess.group)
 					if(groupIdscount.indexOf(from) >= 0) {
 						var ind = groupIdscount.indexOf(from)
 						for(let obj of groupMembers) {
@@ -6521,7 +6495,7 @@ case 'autoreply':
 					break
 					case 'antipv':
 					try {
-					if (!isOwner) return reply(mess.only.ownerB)
+					if (!isOwner) return reply(mess.ownerB)
 					if (args.length < 1) return reply('Hmmmm')
 					if (Number(args[0]) === 1) {
 						if (isAntiPv) return reply('Ja esta ativo')
@@ -6581,7 +6555,7 @@ Desse modo você não correrá o perigo de ter uma bunda estampada na sua galeri
 🌙 Moderação Henplay 🌙`})
 break
 				case 'admins':
-					if (!isGroup) return reply(mess.only.group)
+					if (!isGroup) return reply(mess.group)
 					teks = `Lista de admins do grupo *${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
 					no = 0
 					for (let admon of groupAdmins) {
@@ -6609,7 +6583,7 @@ sendEphemeral: false,
 					break
 					case 'infogc':
 				loli.updatePresence(from, Presence.composing)
-				if (!isGroup) return reply(mess.only.group)
+				if (!isGroup) return reply(mess.group)
 					try {
 					ppimg = await loli.getProfilePicture(from)
 				} catch {
@@ -6840,7 +6814,7 @@ case 'chifre':
 					}, 3000)
 					break
 					case 'eqxv':
-						if (!isGroup)return reply(mess.only.group)
+						if (!isGroup)return reply(mess.group)
 						const xisvideos = groupMembers
 						const surpresa = xisvideos[Math.floor(Math.random() * xisvideos.length)]
 						var xvid = ["Negoes branquelos e feministas", `se depilando na banheira`, `comendo meu cuzinho`, `quer me comer o que fazer?`, "lolis nuas e safadas", "Ursinhos Mansos Peludos e excitados", "mae do adm cozida na pressao", "Buceta de 500 cm inflavel da boneca chinesa lolita company", "corno manso batendo uma pra mim com meu rosto na webcam", "tigresa vip da buceta de mel", "belle delphine dando o cuzinho no barzinho da esquina", "fazendo anal no negao", "africanos nus e chupando pau", "anal africano", "comendo a minha tia", "lgbts fazendo ahegao", "adm gostoso tirando a roupa", "gays puxando o intestino pra fora", "Gore de porno de cachorro", "anoes baixinhos do pau grandao", "Anões Gays Dotados Peludos", "anões gays dotados penetradores de botas", "Ursinhos Mansos Peludos", "Jailson Mendes", "Vendo meu Amigo Comer a Esposa", "Golden Shower"]
@@ -7460,7 +7434,7 @@ reply(textmenu)
 break
 case 'destrava':
 case 'destravar': 
-if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isGroupAdmins) return reply(mess.admin)
 textmenu = `
 
 
@@ -7814,7 +7788,7 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
        case 'cosplay':
    addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 reply(mess.wait)
               let wipu = (await axios.get(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/${command}.json`)).data
               let wipi = wipu[Math.floor(Math.random() * (wipu.length))]
@@ -7829,7 +7803,7 @@ reply(mess.wait)
               break
 case 'nsfwneko':
 				    try {
-						if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+						if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko`, {method: 'get'})
 						buffer = await getBuffer(res.result)
 						loli.sendMessage(from, buffer, image, {quoted: say1, thumbnail:null, caption: 'ni anjim'})
@@ -7841,7 +7815,7 @@ case 'nsfwneko':
 					case 'trap2':
 					 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 					    reply(mess.wait)
 						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwtrap?apikey=vpIudwzHQKpEpJNIO731`, {method: 'get'})
 						buffer = await getBuffer(res.result)
@@ -7852,7 +7826,7 @@ if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* '
 					case 'wallpaper':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/wallnime?apikey=ChOkYbOT8`, {method: 'get'})
@@ -7874,7 +7848,7 @@ case 'wallpapersearch':
                    addFilter(from)
 if (args.length < 1) return reply(`Exemplo : ${prefix + command} albedo`)	
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                     reply(mess.wait)
                     query = args.join('')
                     get_result = await fetchJson(`https://api.lolhuman.xyz/api/wallpaper?apikey=ChOkYbOT8&query=${query}`)
@@ -7885,7 +7859,7 @@ if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* '
 					case 'trap':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/trap?apikey=ChOkYbOT8`, {method: 'get'})
@@ -7906,7 +7880,7 @@ quoted: say1})
 case 'ecchi':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/ecchi?apikey=ChOkYbOT8`, {method: 'get'})
@@ -7928,7 +7902,7 @@ quoted: say1})
 				case 'fanart':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/art?apikey=ChOkYbOT8`, {method: 'get'})
@@ -7949,7 +7923,7 @@ quoted: say1})
 					case 'bunda':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/animebooty?apikey=ChOkYbOT8`, {method: 'get'})
@@ -7970,7 +7944,7 @@ quoted: say1})
 					case 'sideoppai':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/sideoppai?apikey=ChOkYbOT8`, {method: 'get'})
@@ -7991,7 +7965,7 @@ quoted: say1})
 					case 'hentaipe':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/animefeets?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8013,7 +7987,7 @@ quoted: say1})
 					case 'vtubers':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/hololewd?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8035,7 +8009,7 @@ quoted: say1})
 					case 'sexyhentai':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/lewdanimegirls?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8174,7 +8148,7 @@ reply(mess.wait)
 					case 'hentai':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/hentai?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8196,7 +8170,7 @@ quoted: say1})
 					case 'hentainuds':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/solo?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8217,7 +8191,7 @@ quoted: say1})
 					case 'eroyuri':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/eroyuri?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8238,7 +8212,7 @@ quoted: say1})
 					case 'erok':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/erok?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8259,7 +8233,7 @@ quoted: say1})
 					case 'lewdkemo':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/lewdkemo?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8281,7 +8255,7 @@ quoted: say1})
 					case 'sovaco':
 				 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/animearmpits?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8302,7 +8276,7 @@ quoted: say1})
 					case 'nhentai':
 					  addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                     if (args.length == 0) return reply(`Exemplo: ${prefix + command} 344253`)
                     henid = args[0]
                     reply(mess.wait)
@@ -8311,25 +8285,33 @@ if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* '
                     ini_buffer = await getBuffer(get_result)
                     await loli.sendMessage(from, ini_buffer, document, { quoted: horidoc, mimetype: Mimetype.pdf, filename: `@⭐ Henplay ⭐-${pushname}.pdf` })
                     break
-                    case 'modonsfw':
-					if (!isGroup) return reply(mess.only.group)
-					if (!isOwner) return  reply(ptbr.ownerB())
-					if (args.length < 1) return reply('Hmmmm')
-					if ((args[0]) === 'on') {
-						if (isNsfw) return reply('O modo nsfw já está ativo')
-						nsfw.push(from)
-						fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
-						reply(`\`\`\`✓Ativado com sucesso o modo nsfw no grupo\`\`\` *${groupMetadata.subject}*`)
-					} else if ((args[0]) === 'off') {
-						nsfw.splice(from, 1)
-						fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
-						reply(`\`\`\`✓Modo nsfw desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
-					} else {
-						reply('On para ativar, Off para desligar')
-					}
-					break
+case 'modonsfw':
+if (!isGroup) return reply(mess.group)
+if (!isGroupAdmins) return reply(mess.admin)
+if (args.length < 1) return reply('Hmmmm')
+if (Number(args[0]) === 1) {
+if (isNsfw) return reply('O modo nsfw já está ativo')
+nsfw.push(from)
+fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
+reply(`\`\`\`✓Ativado com sucesso o modo nsfw no grupo\`\`\` *${groupMetadata.subject}*`)
+} else if (Number(args[0]) === 0) {
+let position = false
+Object.keys(nsfw).forEach((i) => {
+if (nsfw[i] === from) {
+position = i
+}
+})
+if (position !== false) {
+nsfw.splice(position, 1)}
+fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
+reply(`\`\`\`✓Modo nsfw desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
+} else {
+reply('1 para ativar, 0 para desligar')
+}
+break
+
 case 'antinsfw':
-					if (!isGroup) return reply(mess.only.group)
+					if (!isGroup) return reply(mess.group)
 					if (!isOwner) return  reply(ptbr.ownerB())
 					if (args.length < 1) return reply('Hmmmm')
 					if ((args[0]) === 'on') {
@@ -8348,7 +8330,7 @@ case 'antinsfw':
 					case 'pernas':
 					  addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/animethighss?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8369,7 +8351,7 @@ quoted: say1})
 					case 'oppai':
 					  addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/tits?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8390,7 +8372,7 @@ quoted: say1})
                             case 'ero':
                           addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/ero?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8411,7 +8393,7 @@ quoted: say1})
                             case 'pussy':
                           addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/pussy_jpg?apikey=ChOkYbOT8`,{method: 'get'})
@@ -8432,7 +8414,7 @@ quoted: say1})
                             case 'cum':
                           addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/cum_jpg?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8454,7 +8436,7 @@ quoted: say1})
 					case 'ahegao':
 					  addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/ahegao?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8475,7 +8457,7 @@ quoted: say1})
                     case 'futa':
                   addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/futanari?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8496,7 +8478,7 @@ quoted: say1})
                             case 'bigoppai':
                           addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/biganimetiddies?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8517,7 +8499,7 @@ quoted: say1})
 					case 'yaoi':
 					  addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random/nsfw/yaoi?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8538,7 +8520,7 @@ quoted: say1})
                             case 'kanna':
                             addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				                gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`http://api.lolhuman.xyz/api/random/kanna?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8559,7 +8541,7 @@ quoted: say1})
                       case 'waifu2':
 			          addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 					reply(mess.wait)
                     res = await fetchJson(`https://waifu.pics/api/nsfw/waifu`)
                     ggf = await getBuffer(res.url)
@@ -8580,7 +8562,7 @@ quoted: say1})
 					case 'spank':
 					addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
                      res = await fetchJson(`https://nekos.life/api/v2/img/spank`)
                     ggf = await getBuffer(res.url)
@@ -8601,7 +8583,7 @@ quoted: say1})
 					case 'classic':
                      addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
                      res = await fetchJson(`https://nekos.life/api/v2/img/classic`)
                     ggf = await getBuffer(res.url)
@@ -8622,7 +8604,7 @@ quoted: say1})
 					case 'siririca':
                      addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
                      res = await fetchJson(`https://nekos.life/api/v2/img/pwankg`)
                     ggf = await getBuffer(res.url)
@@ -8643,7 +8625,7 @@ quoted: say1})
                         case 'yuri':
                               addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				                gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`https://api.lolhuman.xyz/api/random2/yuri?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8664,7 +8646,7 @@ quoted: say1})
                             case 'elfa':
                           addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				             gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`http://api.lolhuman.xyz/api/random/elf?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8738,7 +8720,7 @@ if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 					case 'waifu':
 					  addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`http://api.lolhuman.xyz/api/random/waifu?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8947,7 +8929,7 @@ break
                     case 'neko2':
 					  addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`http://api.lolhuman.xyz/api/random/nsfw/neko?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8969,7 +8951,7 @@ quoted: say1})
                     case 'neko':
 	                addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 				            gatatauda = body.slice(6)
                             reply(mess.wait)
                             hori = await getBuffer(`http://api.lolhuman.xyz/api/random/neko?apikey=ChOkYbOT8`, {method: 'get'})
@@ -8991,7 +8973,7 @@ quoted: say1})
                             case 'blowgif':
 					  addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9009,11 +8991,11 @@ quoted: say1})
 					case 'blowgif2':
 					     addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob?apikey=vpIudwzHQKpEpJNIO731`, {method: 'get'})
-                   if (!isGroup) return reply(mess.only.group)
+                   if (!isGroup) return reply(mess.group)
 					reply (mess.wait)
 					exec(`wget ${anu.result} -O ${cry} && ffmpeg -i ${cry} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 						fs.unlinkSync(cry)
@@ -9025,12 +9007,12 @@ quoted: say1})
                      case 'hentaifig2':
                   addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=vpIudwzHQKpEpJNIO731`, {method: 'get'})
-                   if (!isGroup) return reply(mess.only.group)
+                   if (!isGroup) return reply(mess.group)
 					reply (mess.wait)
 					exec(`wget ${anu.result} -O ${cry} && ffmpeg -i ${cry} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 800:800 ${rano}`, (err) => {
 						fs.unlinkSync(cry)
@@ -9042,7 +9024,7 @@ quoted: say1})
 				case 'beijar2':
 				addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9060,12 +9042,12 @@ quoted: say1})
 				case 'shota':
 				addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/randomshota?apikey=vpIudwzHQKpEpJNIO731`, {method: 'get'})
-                   if (!isGroup) return reply(mess.only.group)
+                   if (!isGroup) return reply(mess.group)
 					reply (mess.wait)
 					exec(`wget ${anu.result} -O ${cry} && ffmpeg -i ${cry} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 800:800 ${rano}`, (err) => {
 					       exec(`webpmux -set exif ${addMetadata('Hori-BOT', 'Henplay')} ${ranp} -o ${ranp}`, async (error) => {
@@ -9080,7 +9062,7 @@ quoted: say1})
 					case 'hentaifig':
 				 addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 	            ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9125,7 +9107,7 @@ case 'bonk':
 case 'anal':
 				 addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 				     ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9143,7 +9125,7 @@ case 'anal':
 case 'gasm':
 				 addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 				     ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9161,7 +9143,7 @@ case 'gasm':
 case 'blowjob':
 				 addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 				     ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9299,7 +9281,7 @@ case 'sorrir':
 	            case 'nfig':
 	               addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9334,7 +9316,7 @@ case 'sorrir':
 					case 'pussygif':
 	               addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9352,7 +9334,7 @@ case 'sorrir':
 					case 'pegif':
 	               addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9370,7 +9352,7 @@ case 'sorrir':
 					case 'yurigif':
 	               addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9392,7 +9374,7 @@ case 'sorrir':
 					case 'lick':
 	               addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9414,7 +9396,7 @@ case 'sorrir':
 				case 'nekofig':
 					  addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9437,12 +9419,12 @@ break
                      case 'nekofig2':
                     addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko?apikey=vpIudwzHQKpEpJNIO731`, {method: 'get'})
-                   if (!isGroup) return reply(mess.only.group)
+                   if (!isGroup) return reply(mess.group)
 					reply (mess.wait)
 					exec(`wget ${anu.result} -O ${cry} && ffmpeg -i ${cry} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 800:800 ${rano}`, (err) => {
 						fs.unlinkSync(cry)
@@ -9454,7 +9436,7 @@ break
 				case 'lolifig':
 					  addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					ranp = getRandom('.gif')
                     rano = getRandom('.webp')
@@ -9472,12 +9454,12 @@ break
 					case 'lolifig2':
 					   addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                      reply(mess.wait)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/randomloli?apikey=vpIudwzHQKpEpJNIO731`, {method: 'get'})
-                   if (!isGroup) return reply(mess.only.group)
+                   if (!isGroup) return reply(mess.group)
 					reply (mess.wait)
 					exec(`wget ${anu.result} -O ${cry} && ffmpeg -i ${cry} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 						fs.unlinkSync(cry)
@@ -9489,7 +9471,7 @@ break
 					case 'nhentai2':
 				  addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                     if (args.length == 0) return reply(`Exemplo: ${prefix + command} 344253`)
                     henid = args[0]
 					reply(mess.wait)
@@ -9555,7 +9537,7 @@ break
                   case 'nsfwboquete':
                    addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 					reply(mess.wait)
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob}`, {method: 'get'})
 					naru = JSON.parse(JSON.stringify(anu));
@@ -9641,7 +9623,7 @@ case 'dance':
                      cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/cry?apikey=vpIudwzHQKpEpJNIO731`, {method: 'get'})
-                   if (!isGroup) return reply(mess.only.group)
+                   if (!isGroup) return reply(mess.group)
 					reply (mess.wait)
 					exec(`wget ${anu.result} -O ${cry} && ffmpeg -i ${cry} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 						fs.unlinkSync(cry)
@@ -9687,7 +9669,7 @@ case 'dance':
 					case 'trap2':
 					 addFilter(from)
                      if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                     if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 					    reply(mess.wait)
 						res = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwtrap?apikey=vpIudwzHQKpEpJNIO731`, {method: 'get'})
 						buffer = await getBuffer(res.result)
@@ -9697,7 +9679,7 @@ case 'dance':
 						case 'cum':
                             addFilter(from)
                            if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-                           if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+                           if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
                             reply(mess.wait)
                             hori = await getBuffer(`http://api.lolhuman.xyz/api/random2/cum_jpg?apikey=ChOkYbOT8`, {method: 'get'})
                             mhan = await loli.prepareMessage(from, hori, image, {thumbnail: null})
@@ -10367,7 +10349,7 @@ case 'amongus':  //fuciona
 addFilter(from)
 if (!isOwner) return reply(`te fuder maluco nem meu dono você é`)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isGroupAdmins) return reply(mess.admin)
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Você precisa mencionar alguém')
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 pro = '.\n'
@@ -10435,7 +10417,7 @@ case 'pombinhos': //Jogos
 case 'casal':
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isGroup) return reply(mess.only.group)
+if (!isGroup) return reply(mess.group)
 reply(mess.wait)
 membr = []
 buffer = await getBuffer(`https://i.imgur.com/F2zZB4T.jpg`)
@@ -10455,7 +10437,7 @@ case 'rankfeios': //Jogos
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 try{
-if(!isGroup) return (mess.only.group)
+if(!isGroup) return (mess.group)
 d = []
 teks = '🤓Rank dos mais feios \n'
 for(i = 0; i < 5; i++) {
@@ -10474,7 +10456,7 @@ case 'rankcaco': //Jogos
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 try{
-if(!isGroup) return reply(mess.only.group)
+if(!isGroup) return reply(mess.group)
 d = []
 teks = '🐒 Rank dos camacos\n'
 for(i = 0; i < 5; i++) {
@@ -10493,7 +10475,7 @@ case 'rankgay': //Jogos
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 try{
-if(!isGroup) return reply(mess.only.group)
+if(!isGroup) return reply(mess.group)
 d = []
 teks = '🏳️‍🌈 Rank dos mais gays\n'
 for(i = 0; i < 5; i++) {
@@ -10646,9 +10628,9 @@ break
 case 'ban': //grupo
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-					if (!isGroup) return reply(mess.only.group)
-					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+					if (!isGroup) return reply(mess.group)
+					if (!isGroupAdmins) return reply(mess.admin)
+					if (!isBotGroupAdmins) return reply(mess.Badmin)
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('A marca-alvo que você quer chutar!')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
@@ -10668,9 +10650,9 @@ case 'kick':
 case 'b': 
 case 'k': 
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (!isGroup) return reply(mess.group)
+if (!isGroupAdmins) return reply(mess.admin)
+if (!isBotGroupAdmins) return reply(mess.Badmin)
 if (mek.message.extendedTextMessage === null || mek.message.extendedTextMessage === undefined) return;
 if (mek.message.extendedTextMessage.contextInfo.participant === undefined) {
 entah = mek.message.extendedTextMessage.contextInfo.mentionedJid
@@ -10697,8 +10679,8 @@ break
 //addFilter(from)
 //if (isOwner) return reply('Motivo: Ta Bugado')
 //if (!isRegistered) returnreply(ptbr.rg(prefix, pushname))
-//if (!isGroupAdmins) return//reply(mess.only.admin)
-//if (!isGroup) return// reply(mess.only.group)
+//if (!isGroupAdmins) return//reply(mess.admin)
+//if (!isGroup) return// reply(mess.group)
 //if (args.length < 1)return// reply('Você quer adicionar um gênio?')//
 //if (args[0].startsWith('08'))return reply('Use o códigodo país, man')//
 //try {
@@ -10715,9 +10697,9 @@ break
 //addFilter(from)
 //if (isOwner) return reply('Motivo: Ta Bugado')
 //if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-//if (!isGroup) return reply(mess.only.group)//
-//if (!isGroupAdmins) return reply(mess.only.admin)
-//if (!isBotGroupAdmins) return// reply(mess.only.Badmin)//
+//if (!isGroup) return reply(mess.group)//
+//if (!isGroupAdmins) return reply(mess.admin)
+//if (!isBotGroupAdmins) return// reply(mess.Badmin)//
 //if (mek.message.extendedTextMessage === null || mek.message.extendedTextMessage === undefined) return;//
 //if (mek.message.extendedTextMessage.contextInfo.participant === undefined) {//
 //entah = mek.message.extendedTextMessage.contextInfo.mentionedJid
@@ -10739,9 +10721,9 @@ break
 case 'promover': //Grupo
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (!isGroup) return reply(mess.group)
+if (!isGroupAdmins) return reply(mess.admin)
+if (!isBotGroupAdmins) return reply(mess.Badmin)
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 if (mentioned.length > 1) {
@@ -10760,9 +10742,9 @@ break
 case 'promote': //Grupo
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins && !isOwner) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (!isGroup) return reply(mess.group)
+if (!isGroupAdmins && !isOwner) return reply(mess.admin)
+if (!isBotGroupAdmins) return reply(mess.Badmin)
 if (mek.message.extendedTextMessage === null || mek.message.extendedTextMessage === undefined) return;
 if (mek.message.extendedTextMessage.contextInfo.participant === undefined) {
 entah = mek.message.extendedTextMessage.contextInfo.mentionedJid
@@ -10785,9 +10767,9 @@ break
 case 'rebaixar': //Grupo
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (!isGroup) return reply(mess.group)
+if (!isGroupAdmins) return reply(mess.admin)
+if (!isBotGroupAdmins) return reply(mess.Badmin)
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 if (mentioned.length > 1) {
@@ -10806,9 +10788,9 @@ break
 case 'demote': //Grupo
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (!isGroup) return reply(mess.group)
+if (!isGroupAdmins) return reply(mess.admin)
+if (!isBotGroupAdmins) return reply(mess.Badmin)
 if (mek.message.extendedTextMessage === null || mek.message.extendedTextMessage === undefined) return;
 if (mek.message.extendedTextMessage.contextInfo.participant === undefined) {
 entah = mek.message.extendedTextMessage.contextInfo.mentionedJid
@@ -11008,8 +10990,8 @@ break
 					break
 					case 'marcar4':
                 loli.updatePresence(from, Presence.composing) 
-                if (!isGroup) return reply(mess.only.group)
-                if (!isGroupAdmins) return reply(mess.only.admin)
+                if (!isGroup) return reply(mess.group)
+                if (!isGroupAdmins) return reply(mess.admin)
                 teks = body.slice(9)
                 group = await loli.groupMetadata(from);
                 member = group['participants']
@@ -11028,7 +11010,7 @@ break
 case 'horitag':
 addFilter(from)
 loli.updatePresence(from, Presence.composing)
- if (!isGroup) return reply(mess.only.group)
+ if (!isGroup) return reply(mess.group)
 members_id = []
 todos = (args.length > 1) ? body.slice(8).trim(): ''
 todos += `${q}\n\n`
@@ -11046,7 +11028,7 @@ break
 
 case 'grupo-info': //Grupo
 loli.updatePresence(from, Presence.composing)
-if (!isGroup) return reply(mess.only.group)
+if (!isGroup) return reply(mess.group)
 ppUrl = await loli.getProfilePicture(from) // deixe vazio para obter o seu
 buffer = await getBuffer(ppUrl)
 loli.sendMessage(from, buffer, image, {quoted: say1, caption: `*NOME* : ${groupName}\n*MEMBRO* : ${groupMembers.length}\n*ADMIN* : ${groupAdmins.length}\n*DESCRIÇÃO* : ${groupDesc}`})
@@ -11209,7 +11191,7 @@ if (args[0] === 'ativar') {
 if (isWelcome) return reply('*[❗] ja esta ativado nii-san*')
 welcome.push(from)
 fs.writeFileSync('./arquivos/welcome.json', JSON.stringify(welcome))
-reply(mess.only.tobireplay)
+reply(mess.tobireplay)
 } else if (args[0] === 'desativar') {
 let position = welcome.indexOf(welcome.find((x) => x === from))
 if (position === -1) return reply(`${command} não estava ativo antes`)
@@ -11231,7 +11213,7 @@ if (args[0] === 'ativar') {
 if (isAntitexto) return reply('*[❗] ja esta ativado nii-san*')
 antitexto.push(from)
 fs.writeFileSync('./arquivos/antitexto.json', JSON.stringify(antitexto))
-reply(mess.only.tobireplay)
+reply(mess.tobireplay)
 } else if (args[0] === 'desativar') {
 antitexto.splice(from, 1)
 fs.writeFileSync('./arquivos/antitexto.json', JSON.stringify(antitexto))
@@ -11467,7 +11449,7 @@ break
 case 'lolizinhas': 
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 buffer = await getBuffer(`https://hadi-api.herokuapp.com/api/neko`)
 loli.sendMessage(from, buffer, image, {quoted: say1})
 break
@@ -11505,7 +11487,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://fdz-app.herokuapp.com/api/pinterest?q=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11522,7 +11504,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11543,7 +11525,7 @@ try {
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11568,7 +11550,7 @@ try {
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11593,7 +11575,7 @@ try {
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11618,7 +11600,7 @@ try {
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11644,7 +11626,7 @@ try {
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11671,7 +11653,7 @@ try {
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11697,7 +11679,7 @@ try {
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11718,7 +11700,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11735,7 +11717,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11753,7 +11735,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11771,7 +11753,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11788,7 +11770,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11805,7 +11787,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11822,7 +11804,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11839,7 +11821,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11856,7 +11838,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11873,7 +11855,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11890,7 +11872,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11907,7 +11889,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11924,7 +11906,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11941,7 +11923,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11958,7 +11940,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11975,7 +11957,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -11992,7 +11974,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12009,7 +11991,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12026,7 +12008,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12043,7 +12025,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12060,7 +12042,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12077,7 +12059,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12094,7 +12076,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12111,7 +12093,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12128,7 +12110,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12145,7 +12127,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12162,7 +12144,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12179,7 +12161,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12196,7 +12178,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12213,7 +12195,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12230,7 +12212,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12247,7 +12229,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12264,7 +12246,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12281,7 +12263,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12298,7 +12280,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12315,7 +12297,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12332,7 +12314,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12349,7 +12331,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12366,7 +12348,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12383,7 +12365,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12400,7 +12382,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12417,7 +12399,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12434,7 +12416,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12451,7 +12433,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12468,7 +12450,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -12485,7 +12467,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -14096,7 +14078,7 @@ break
 /*case 'boc': 
 addFilter(from)
 //if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-//if (!isRegistered) return reply(mess.only.akumagayb)
+//if (!isRegistered) return reply(mess.akumagayb)
 //if (!isOwner) return reply(ptbr.ownerB())
 //const horatt = moment.tz('America/Sao_Paulo').//format('HH:mm')//
 //const horaAtual = `${horatt}`//
@@ -14476,7 +14458,7 @@ addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
 if (!isvipp) return reply('Você não é um Membro Vip, entre em contato com o proprietário ou digite *.buyvip* para comprar acesso Vip!')
 loli.updatePresence(from, Presence.composing) 
-if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isGroupAdmins) return reply(mess.admin)
 if (!isGroup) return reply(ptbr.group())
 htg = body.slice(9)
 group = await loli.groupMetadata(from);
@@ -15104,7 +15086,7 @@ case 'mamada':
 case 'chupar':
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('marque o alvo que você quer dá uma mamada')
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 pru = '.\n'
@@ -15119,7 +15101,7 @@ break
 case 'sexo':
 addFilter(from)
 if (!isRegistered) return reply(ptbr.rg(prefix, pushname))
-if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw on* ')
+if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar use: .modonsfw 1* ')
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('marque o alvo que você quer fazer sexo')
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 pru = '.\n'
@@ -15417,7 +15399,7 @@ nk = am[Math.floor(Math.random() * am.length)]
 data = await fetchJson(`https://fdz-app.herokuapp.com/api/pinterest?q=${nk}`, {
 method: 'get'
 })
-reply(mess.only.tobianime)
+reply(mess.tobianime)
 n = JSON.parse(JSON.stringify(data));
 nimek = n[Math.floor(Math.random() * n.length)];
 pok = await getBuffer(nimek)
@@ -16118,7 +16100,7 @@ if (args[0] === 'ativar') {
 if (isAntiLink) return reply('*[❗] ja esta ativado nii-san*')
 antilink.push(from)
 fs.writeFileSync('./arquivos/antilink.json', JSON.stringify(antilink))
-reply(mess.only.tobireplay)
+reply(mess.tobireplay)
 } else if (args[0] === 'desativar') {
 let position = antilink.indexOf(antilink.find((x) => x === from))
 if (position === -1) return reply(`${command} não estava ativo antes`)
@@ -16140,7 +16122,7 @@ if (args[0] === 'ativar') {
 if (isAntictt) return reply('*[❗] ja esta ativado nii-san*')
 antictt.push(from)
 fs.writeFileSync('./arquivos/antictt.json', JSON.stringify(antictt))
-reply(mess.only.tobireplay)
+reply(mess.tobireplay)
 reply('Agora quem manda qualquer contato vai ser removido do grupo')
 } else if (args[0] === 'desativar') {
 antictt.splice(from, 1)
@@ -16161,7 +16143,7 @@ if (args[0] === 'ativar') {
 if (isAutofigu) return reply('*[❗] ja esta ativado nii-san*')
 autofigu.push(from)
 fs.writeFileSync('./arquivos/autofigu.json', JSON.stringify(autofigu))
-reply(mess.only.tobireplay)
+reply(mess.tobireplay)
 } else if (args[0] === 'desativar') {
 let position = autofigu.indexOf(autofigu.find((x) => x === from))
 if (position === -1) return reply(`${command} não estava ativo antes`)
@@ -16184,7 +16166,7 @@ if (args[0] === 'ativar') {
 if (isLevelingOn) return reply('*[❗] ja esta ativado nii-san*')
 _leveling.push(from)
 fs.writeFileSync('./arquivos/leveling.json', JSON.stringify(_leveling))
-reply(mess.only.tobireplay)
+reply(mess.tobireplay)
 } else if (args[0] === 'desativar') {
 let position = _leveling.indexOf(_leveling.find((x) => x === from))
 if (position === -1) return reply(`${command} não estava ativo antes`)
@@ -16206,7 +16188,7 @@ if (args[0] === 'ativar') {
 if (isAntiteste) return reply('*[❗] ja esta ativado nii-san*')
 antiteste.push(from)
 fs.writeFileSync('./arquivos/antiteste.json', JSON.stringify(antiteste))
-reply(mess.only.tobireplay)
+reply(mess.tobireplay)
 } else if (args[0] === 'desativar') {
 antiteste.splice(from, 1)
 fs.writeFileSync('./arquivos/antiteste.json', JSON.stringify(antiteste))
@@ -16311,7 +16293,7 @@ loli.sendMessage(from, buttonMessage, MessageType.buttonsMessage,
 break
 
 case 'itsme':
-//   if (!isRegister) return reply(mess.only.daftarB)
+//   if (!isRegister) return reply(mess.daftarB)
   try {
 ppimg = await loli.getProfilePicture(`${sender.split('@')[0]}@c.us`)
   } catch {
@@ -16328,7 +16310,7 @@ quoted: mek, caption: teks
   break
 
 case 'itsme':
-//   if (!isRegister) return reply(mess.only.daftarB)
+//   if (!isRegister) return reply(mess.daftarB)
   try {
 ppimg = await loli.getProfilePicture(`${sender.split('@')[0]}@c.us`)
   } catch {
