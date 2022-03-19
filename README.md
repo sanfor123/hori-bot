@@ -16,7 +16,7 @@
 > termux-setup-storage     (você precisa dar acesso aos seus arquivos)
 > pkg install git     (necessário para baixar os arquivos do bot)
 > git clone https://github.com/zadik-hacker/hori-bot.git     (baixa os arquivos do bot)
-> cd hori-main    (abre a pasta do bot)
+> cd hori-bot    (abre a pasta do bot)
 > bash install.sh     (para instalar todas as dependências)
 
 ## Para iniciar o bot use:
